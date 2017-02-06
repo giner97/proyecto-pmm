@@ -12,12 +12,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.zip.Inflater;
 
 
-public class Fragmento_consultar extends Fragment implements  AdapterView.OnItemClickListener, TextWatcher{
+public class Fragmento_consultar extends Fragment implements  AdapterView.OnItemClickListener, TextWatcher, AdapterView.OnItemLongClickListener{
 
     //Widgets del fragmento
 
@@ -25,6 +27,7 @@ public class Fragmento_consultar extends Fragment implements  AdapterView.OnItem
         private ListView clientes;
         private ArrayAdapter<Cliente>arrayAdapterCliente;
         private FragmentoConsultarListener escuchador;
+        private ArrayList<Cliente>listaClientes;
 
     //Constructor
 
@@ -63,10 +66,7 @@ public class Fragmento_consultar extends Fragment implements  AdapterView.OnItem
         //ActionListener del listView
 
             clientes.setOnItemClickListener(this);
-
-        //Creamos un array de Clientes
-
-            ArrayList<Cliente>listaClientes = Cliente.generaListaAlumnos();
+            clientes.setOnItemLongClickListener(this);
 
         //Instancio el arrayAdapter y le paso el array de Clientes
 
@@ -85,11 +85,27 @@ public class Fragmento_consultar extends Fragment implements  AdapterView.OnItem
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+        //Creo un cliente y recupero el cliente seleccionado
 
+            Cliente cliente = (Cliente)adapterView.getItemAtPosition(i);
+
+        escuchador.onMuestraCLiente(cliente);
 
     }
 
+    @Override
+    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+        /*Popup  prueba Falta poner el escuchador
+
+        PopupMenu popup = new PopupMenu(getActivity(), clientes);
+
+        popup.getMenuInflater().inflate(R.menu.popup_menu_clientes, popup.getMenu());
+
+        popup.show();*/
+
+        return true;
+    }
 
     @Override
     public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -106,13 +122,15 @@ public class Fragmento_consultar extends Fragment implements  AdapterView.OnItem
     @Override
     public void afterTextChanged(Editable editable) {
 
+
+
     }
 
     //Metodos callbacks
 
         public interface FragmentoConsultarListener{
 
-
+            void onMuestraCLiente(Cliente cliente);
 
         }
 
@@ -122,5 +140,9 @@ public class Fragmento_consultar extends Fragment implements  AdapterView.OnItem
 
         }
 
+        public void pasaArrayList(ArrayList<Cliente>clientes){
 
+            this.listaClientes=clientes;
+
+        }
 }

@@ -21,6 +21,7 @@ public class FragmentoActivityMain extends Fragment implements View.OnClickListe
         private FragmentoMainListener escuchador;
         private ImageButton boton_Consultar;
         private ListView listaMoviles;
+        private ArrayList<Moviles>arrayMoviles;
 
     //Constructor
 
@@ -51,21 +52,9 @@ public class FragmentoActivityMain extends Fragment implements View.OnClickListe
 
             boton_Consultar.setOnClickListener(this);
 
-        //Creamos un array de moviles
-
-            ArrayList<Moviles> arrayMoviles=Moviles.generaListaAlumnos();
-
-        //Creamos un arrayAdapter y le pasamos el arrayList
-
-            ArrayAdapterMoviles arrayAdapter = new ArrayAdapterMoviles(getActivity(),arrayMoviles);
-
         //Escuchador del listViewMoviles
 
             listaMoviles.setOnItemClickListener(this);
-
-        //pasamos el arrayList al listView
-
-            listaMoviles.setAdapter(arrayAdapter);
 
         return v;
     }
@@ -85,6 +74,8 @@ public class FragmentoActivityMain extends Fragment implements View.OnClickListe
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+
+
     }
 
     public interface FragmentoMainListener{
@@ -99,6 +90,22 @@ public class FragmentoActivityMain extends Fragment implements View.OnClickListe
 
     }
 
+    public void pasaMoviles(ArrayList<Moviles>moviles){
 
+        this.arrayMoviles=moviles;
+
+        if(moviles!=null) {
+
+            //Creamos un arrayAdapter y le pasamos el arrayList
+
+            ArrayAdapterMoviles arrayAdapter = new ArrayAdapterMoviles(getActivity(), arrayMoviles);
+
+            //pasamos el arrayList al listView
+
+            listaMoviles.setAdapter(arrayAdapter);
+
+        }
+
+    }
 
 }

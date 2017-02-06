@@ -2,18 +2,30 @@ package com.example.giner.proyectopmm;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Cliente {
 
     //Variables
 
-        private String nombre;
+        private int id_cliente,cp;
+        private String nombre,apellidos,dni,pais,comunidadAutonoma,provincia,domicilio;
+        private Date fechaNacimiento;
 
     //Constructor
 
-        public Cliente(String nombre){
+        public Cliente(int id_cliente,String nombre,String apellidos,String dni, Date fechaNacimiento, int cp, String pais, String comunidadAutonoma, String provincia, String domicilio){
 
+            this.id_cliente=id_cliente;
             this.nombre=nombre;
+            this.apellidos=apellidos;
+            this.dni=dni;
+            this.fechaNacimiento=fechaNacimiento;
+            this.cp=cp;
+            this.pais=pais;
+            this.comunidadAutonoma=comunidadAutonoma;
+            this.provincia=provincia;
+            this.domicilio=domicilio;
 
         }
 
@@ -27,21 +39,84 @@ public class Cliente {
             this.nombre = nombre;
         }
 
-    /*prueba................................................................*/
-
-    private static final String[] arrayNombres =
-            {"Alberto", "Sara", "José Emilio", "Pier Paolo", "Alvaro", "Alejandro","Javier",
-                    "Marcos","Iván","María", "Vicente Jesús", "Alejandro", "Borja", "Antonio",
-                    "Jonatan","Enrique","Alejandro","Jose Agustín","Daniel","Carlos"};
-
-
-    public static ArrayList<Cliente> generaListaAlumnos (){
-        ArrayList<Cliente> arrayAlumno = new ArrayList<Cliente>(20);
-        for (int i=0; i<20;i++){
-            Cliente cliente = new Cliente (arrayNombres[i]);
-            arrayAlumno.add(cliente);
+        public int getId_cliente() {
+            return id_cliente;
         }
-        return  arrayAlumno;
+
+        public void setId_cliente(int id_cliente) {
+            this.id_cliente = id_cliente;
+        }
+
+        public int getCp() {
+            return cp;
+        }
+
+        public void setCp(int cp) {
+            this.cp = cp;
+        }
+
+        public String getDni() {
+            return dni;
+        }
+
+        public void setDni(String dni) {
+            this.dni = dni;
+        }
+
+        public String getApellidos() {
+            return apellidos;
+        }
+
+        public void setApellidos(String apellidos) {
+            this.apellidos = apellidos;
+        }
+
+        public String getPais() {
+            return pais;
+        }
+
+        public void setPais(String pais) {
+            this.pais = pais;
+        }
+
+        public String getComunidadAutonoma() {
+            return comunidadAutonoma;
+        }
+
+        public void setComunidadAutonoma(String comunidadAutonoma) {
+            this.comunidadAutonoma = comunidadAutonoma;
+        }
+
+        public String getProvincia() {
+            return provincia;
+        }
+
+        public void setProvincia(String provincia) {
+            this.provincia = provincia;
+        }
+
+        public String getDomicilio() {
+            return domicilio;
+        }
+
+        public void setDomicilio(String domicilio) {
+            this.domicilio = domicilio;
+        }
+
+        public Date getFechaNacimiento() {
+            return fechaNacimiento;
+        }
+
+        public void setFechaNacimiento(Date fechaNacimiento) {
+            this.fechaNacimiento = fechaNacimiento;
+        }
+
+    @Override
+    public String toString() {
+
+        String resultado = this.nombre;
+        return resultado;
 
     }
+
 }

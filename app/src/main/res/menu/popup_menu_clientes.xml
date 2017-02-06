@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <item
+        android:id="@+id/modificar"
+        android:title="Modificar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <item
+        android:id="@+id/eliminar"
+        android:title="Eliminar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <item
+        android:id="@+id/volver"
+        android:title="Volver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</menu>

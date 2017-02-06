@@ -43,7 +43,7 @@ public class ArrayAdapterMoviles extends ArrayAdapter<Moviles>{
 
         //Mostramos los datos
 
-            nombreMovil.setText(movil.getNombre());
+            nombreMovil.setText(movil.getMarca()+" "+movil.getModelo());
             precioMovil.setText(String.valueOf(movil.getPrecio())+"€");
 
         //Devolvemos el convertView

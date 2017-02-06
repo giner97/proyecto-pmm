@@ -1,0 +1,74 @@
+TABLAS
+
+create table Cliente(id_cliente int not null auto_increment,
+nombre varchar(30),
+apellidos varchar(50),
+dni varchar(9) not null unique,
+fechaNacimiento date,
+cp int(5)not null,
+pais varchar(30),
+comunidadAutonoma varchar(50),
+provincia varchar(30),
+domicilio varchar(60),
+
+primary key(id_cliente)
+);
+
+create table Movil(id_movil int not null auto_increment,
+marca varchar(30),
+modelo varchar(30),
+caracteristicas varchar(70),
+procesador varchar(50),
+ram varchar(30),
+almacenamiento varchar(30),
+stock boolean,
+sistemaOperativo varchar(50),
+precio int(5),
+
+primary key (id_movil));
+
+create table Compra(id_compra int not null auto_increment,
+id_cliente int(9)not null,
+id_movil int(9)not null,
+numSerie int unique,
+
+primary key (id_compra),
+foreign key(id_cliente) references Cliente(id_cliente),
+foreign key(id_movil)references Movil(id_movil));
+
+INSERCIONES
+
+insert into Cliente(nombre, apellidos, dni, fechaNacimiento, cp, pais, comunidadAutonoma, provincia,domicilio)
+values('Alvaro','Giner Oltra', '12345678A','1997-05-03',46009,'España', 'Comunidad Valenciana', 'Valencia','Calle falsa N.123');
+
+insert into Cliente(nombre, apellidos, dni, fechaNacimiento, cp, pais, comunidadAutonoma, provincia,domicilio)
+values('Javier','Morales Montesinos', '12569874E','1976-04-21',46100,'España', 'Comunidad Valenciana', 'Valencia','Calle Burjassot N.21');
+
+insert into Cliente(nombre, apellidos, dni, fechaNacimiento, cp, pais, comunidadAutonoma, provincia,domicilio)
+values('Luis','Morales Cotoli', '45632987M','1990-11-15',46250,'España', 'Comunidad Valenciana', 'Valencia','Calle Mislata N.41');
+
+insert into Cliente(nombre, apellidos, dni, fechaNacimiento, cp, pais, comunidadAutonoma, provincia,domicilio)
+values('Ricardo','Miralles Bernal', '84596321Q','1996-10-14',46850,'España', 'Comunidad Valenciana', 'Valencia','Calle Xirivella N.41');
+
+insert into Cliente(nombre, apellidos, dni, fechaNacimiento, cp, pais, comunidadAutonoma, provincia,domicilio)
+values('Anabel','Chacon Fernandez', '85264137D','1993-10-14',46400,'España', 'Comunidad Valenciana', 'Valencia','Calle Benimamet N.57');
+
+
+insert into Movil(marca, modelo, caracteristicas, procesador, ram, almacenamiento, stock, sistemaOperativo,precio)
+values('Apple','iphone 6', 'Smartphone de apple','1.6GHz Quad core','2Gb','64Gb', true, 'IOS','500 Euros');
+
+insert into Movil(marca, modelo, caracteristicas, procesador, ram, almacenamiento, stock, sistemaOperativo,precio)
+values('Samsung','Galaxy S6', 'Smartphone de Samsung','1.8GHz Octa core','3Gb','128Gb', true, 'Android','560 Euros');
+
+insert into Movil(marca, modelo, caracteristicas, procesador, ram, almacenamiento, stock, sistemaOperativo,precio)
+values('Xiaomi','Mi5', 'Smartphone de Xiaomi','1.4GHz Octa core','2Gb','32Gb', true, 'Android','200 Euros');
+
+insert into Movil(marca, modelo, caracteristicas, procesador, ram, almacenamiento, stock, sistemaOperativo,precio)
+values('Huawei','P7', 'Smartphone de Huawei','1.2GHz Quad core','1Gb','16Gb', true, 'Android','150 Euros');
+
+insert into Movil(marca, modelo, caracteristicas, procesador, ram, almacenamiento, stock, sistemaOperativo,precio)
+values('BQ','Aquaris x5', 'Smartphone de BQ','2.0GHz Quad core','1Gb','16Gb', true, 'Android','200 Euros');
+
+
+
+

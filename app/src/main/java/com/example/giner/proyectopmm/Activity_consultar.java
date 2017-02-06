@@ -20,4 +20,11 @@ public class Activity_consultar extends AppCompatActivity implements Fragmento_c
             fragmento.setFragmentoConsultarListener(this);
 
     }
+
+    @Override
+    public void onMuestraCLiente(Cliente cliente) {
+
+        //Abre dialogo y le paso el objeto
+
+    }
 }
