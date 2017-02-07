@@ -2,7 +2,7 @@ package com.example.giner.proyectopmm;
 
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 public class Cliente {
 
@@ -14,13 +14,13 @@ public class Cliente {
 
     //Constructor
 
-        public Cliente(int id_cliente,String nombre,String apellidos,String dni, Date fechaNacimiento, int cp, String pais, String comunidadAutonoma, String provincia, String domicilio){
+        public Cliente(int id_cliente,String nombre,String apellidos,String dni, /*Date fechaNacimiento, */int cp, String pais, String comunidadAutonoma, String provincia, String domicilio){
 
             this.id_cliente=id_cliente;
             this.nombre=nombre;
             this.apellidos=apellidos;
             this.dni=dni;
-            this.fechaNacimiento=fechaNacimiento;
+            //this.fechaNacimiento=fechaNacimiento;
             this.cp=cp;
             this.pais=pais;
             this.comunidadAutonoma=comunidadAutonoma;
@@ -114,7 +114,7 @@ public class Cliente {
     @Override
     public String toString() {
 
-        String resultado = this.nombre;
+        String resultado = this.nombre+" "+this.apellidos;
         return resultado;
 
     }

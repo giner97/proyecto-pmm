@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 import java.util.zip.Inflater;
 
 
-public class Fragmento_consultar extends Fragment implements  AdapterView.OnItemClickListener, TextWatcher, AdapterView.OnItemLongClickListener{
+public class Fragmento_consultar extends Fragment implements  AdapterView.OnItemClickListener, TextWatcher, AdapterView.OnItemLongClickListener, PopupMenu.OnMenuItemClickListener{
 
     //Widgets del fragmento
 
@@ -28,6 +29,8 @@ public class Fragmento_consultar extends Fragment implements  AdapterView.OnItem
         private ArrayAdapter<Cliente>arrayAdapterCliente;
         private FragmentoConsultarListener escuchador;
         private ArrayList<Cliente>listaClientes;
+        private Cliente clienteSeleccionado;
+        private int numSeleccionado;
 
     //Constructor
 
@@ -77,24 +80,30 @@ public class Fragmento_consultar extends Fragment implements  AdapterView.OnItem
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-        //Creo un cliente y recupero el cliente seleccionado
+        //Recupero el cliente seleccionado
 
-            Cliente cliente = (Cliente)adapterView.getItemAtPosition(i);
+        clienteSeleccionado = (Cliente)adapterView.getItemAtPosition(i);
 
-        escuchador.onMuestraCLiente(cliente);
+        escuchador.onMuestraCLiente(clienteSeleccionado);
 
     }
 
     @Override
     public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-        /*Popup  prueba Falta poner el escuchador
+        //Recupero el cliente seleccionado
+
+        clienteSeleccionado = (Cliente)adapterView.getItemAtPosition(i);
+
+        //Popup  prueba Falta poner el escuchador
 
         PopupMenu popup = new PopupMenu(getActivity(), clientes);
 
         popup.getMenuInflater().inflate(R.menu.popup_menu_clientes, popup.getMenu());
 
-        popup.show();*/
+        popup.setOnMenuItemClickListener(this);
+
+        popup.show();
 
         return true;
     }
@@ -118,11 +127,34 @@ public class Fragmento_consultar extends Fragment implements  AdapterView.OnItem
 
     }
 
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+
+        switch (menuItem.getItemId()){
+
+            case R.id.modificar:
+                Toast.makeText(getActivity(),"Esto modifica",Toast.LENGTH_SHORT).show();
+                return true;
+
+            case R.id.eliminar:
+
+                escuchador.onEliminaCliente(clienteSeleccionado);
+                return true;
+
+            default:
+
+                return false;
+
+        }
+
+    }
+
     //Metodos callbacks
 
         public interface FragmentoConsultarListener{
 
             void onMuestraCLiente(Cliente cliente);
+            void onEliminaCliente(Cliente cliente);
 
         }
 
@@ -132,26 +164,33 @@ public class Fragmento_consultar extends Fragment implements  AdapterView.OnItem
 
         }
 
-        public void pasaArrayList(ArrayList<Cliente>arrayclientes){
+        public void pasaArrayList(ArrayList<Cliente>arrayclientes) {
 
-            this.listaClientes=arrayclientes;
+            this.listaClientes = arrayclientes;
 
-            if(clientes!=null){
+            if (clientes != null) {
 
-                //Instancio el arrayAdapter y le paso el array de Clientes
+                if((arrayAdapterCliente==null)&&(this.listaClientes!=null)) {
 
-                arrayAdapterCliente = new ArrayAdapter<Cliente>(getActivity(),android.R.layout.simple_list_item_1,listaClientes);
+                    //Instancio el arrayAdapter y le paso el array de Clientes
 
-                //Le paso el arrayAdapter al ListView
+                        arrayAdapterCliente = new ArrayAdapter<Cliente>(getActivity(), android.R.layout.simple_list_item_1, listaClientes);
 
-                clientes.setAdapter(arrayAdapterCliente);
+                    //Le paso el arrayAdapter al ListView
+
+                    clientes.setAdapter(arrayAdapterCliente);
+
+                }
 
             }
 
-
         }
 
+        public void actualizaLista(Cliente cliente){
 
+            listaClientes.remove(cliente);
+            arrayAdapterCliente.notifyDataSetChanged();
 
+        }
 
 }

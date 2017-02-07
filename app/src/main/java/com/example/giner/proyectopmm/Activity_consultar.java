@@ -22,10 +22,12 @@ public class Activity_consultar extends AppCompatActivity implements Fragmento_c
     //Constantes con el codigo personalizado
 
         private final static int CONSULTA_CLIENTES = 0;
+        private final static int ELIMINA_CLIENTE = 1;
 
     //Creamos las variables
 
         private Fragmento_consultar fragmento;
+        private Cliente clienteSeleccionadoEliminar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +48,6 @@ public class Activity_consultar extends AppCompatActivity implements Fragmento_c
         //Comprobaremos que existe conexión de red
         if (infoRed != null && infoRed.isConnected()) {
 
-            // Mostrar errores
-            Toast.makeText(this, "Conexion de red activa.", Toast.LENGTH_SHORT).show();
 
         }
 
@@ -71,6 +71,16 @@ public class Activity_consultar extends AppCompatActivity implements Fragmento_c
     }
 
     @Override
+    public void onEliminaCliente(Cliente cliente) {
+
+        clienteSeleccionadoEliminar=cliente;
+        String clienteID = Integer.toString(cliente.getId_cliente());
+        TareaRest tareaElimina = new TareaRest(this,ELIMINA_CLIENTE,"DELETE",URL_BASE_SERVIDOR+"/cliente/"+clienteID,null,this);
+        tareaElimina.execute();
+
+    }
+
+    @Override
     public void onTareaRestFinalizada(int codigoOperacion, int codigoRespuestaHttp, String respuestaJson) {
 
         if (codigoRespuestaHttp == 200 || respuestaJson != null && !respuestaJson.isEmpty()) {
@@ -79,6 +89,12 @@ public class Activity_consultar extends AppCompatActivity implements Fragmento_c
 
                 ArrayList<Cliente> clientes = procesarListaClientes(respuestaJson);
                 fragmento.pasaArrayList(clientes);
+
+            }
+
+            else if(codigoOperacion==1){
+
+                fragmento.actualizaLista(clienteSeleccionadoEliminar);
 
             }
 

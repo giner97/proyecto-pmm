@@ -47,8 +47,7 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
         //Comprobaremos que existe conexión de red
         if (infoRed != null && infoRed.isConnected()) {
 
-            // Mostrar errores
-            Toast.makeText(this, "Conexion de red activa.", Toast.LENGTH_SHORT).show();
+
 
         }
 
