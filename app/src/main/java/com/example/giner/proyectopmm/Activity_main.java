@@ -18,7 +18,7 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
 
     //URL servidor
 
-    private final static String URL_BASE_SERVIDOR = "http://alvaro-ricardo-pmm.hol.es";
+    private final static String URL_BASE_SERVIDOR = "http://alvaro-ricardo-pmm.hol.es/";
 
     //Constantes con el codigo personalizado
 
@@ -59,7 +59,7 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
 
         }
 
-       TareaRest tarea = new TareaRest(this,CONSULTA_MOVILES,"GET",URL_BASE_SERVIDOR+"/movil/",null,this);
+       TareaRest tarea = new TareaRest(this,CONSULTA_MOVILES,"GET",URL_BASE_SERVIDOR+"/movil",null,this);
        tarea.execute();
 
     }

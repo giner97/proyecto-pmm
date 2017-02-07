@@ -68,14 +68,6 @@ public class Fragmento_consultar extends Fragment implements  AdapterView.OnItem
             clientes.setOnItemClickListener(this);
             clientes.setOnItemLongClickListener(this);
 
-        //Instancio el arrayAdapter y le paso el array de Clientes
-
-            arrayAdapterCliente = new ArrayAdapter<Cliente>(getActivity(),android.R.layout.simple_list_item_1,listaClientes);
-
-        //Le paso el arrayAdapter al ListView
-
-            clientes.setAdapter(arrayAdapterCliente);
-
         //Return
 
             return v;
@@ -140,9 +132,26 @@ public class Fragmento_consultar extends Fragment implements  AdapterView.OnItem
 
         }
 
-        public void pasaArrayList(ArrayList<Cliente>clientes){
+        public void pasaArrayList(ArrayList<Cliente>arrayclientes){
 
-            this.listaClientes=clientes;
+            this.listaClientes=arrayclientes;
+
+            if(clientes!=null){
+
+                //Instancio el arrayAdapter y le paso el array de Clientes
+
+                arrayAdapterCliente = new ArrayAdapter<Cliente>(getActivity(),android.R.layout.simple_list_item_1,listaClientes);
+
+                //Le paso el arrayAdapter al ListView
+
+                clientes.setAdapter(arrayAdapterCliente);
+
+            }
+
 
         }
+
+
+
+
 }
