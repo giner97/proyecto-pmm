@@ -8,24 +8,23 @@ public class Cliente {
 
     //Variables
 
-        private int id_cliente,cp;
+        private int id_cliente,cp,telefono;
         private String nombre,apellidos,dni,pais,comunidadAutonoma,provincia,domicilio;
-        private Date fechaNacimiento;
 
     //Constructor
 
-        public Cliente(int id_cliente,String nombre,String apellidos,String dni, /*Date fechaNacimiento, */int cp, String pais, String comunidadAutonoma, String provincia, String domicilio){
+        public Cliente(int id_cliente,String nombre,String apellidos,String dni,int cp, String pais, String comunidadAutonoma, String provincia, String domicilio,int telefono){
 
             this.id_cliente=id_cliente;
             this.nombre=nombre;
             this.apellidos=apellidos;
             this.dni=dni;
-            //this.fechaNacimiento=fechaNacimiento;
             this.cp=cp;
             this.pais=pais;
             this.comunidadAutonoma=comunidadAutonoma;
             this.provincia=provincia;
             this.domicilio=domicilio;
+            this.telefono=telefono;
 
         }
 
@@ -103,12 +102,12 @@ public class Cliente {
             this.domicilio = domicilio;
         }
 
-        public Date getFechaNacimiento() {
-            return fechaNacimiento;
+        public int getTelefono() {
+            return telefono;
         }
 
-        public void setFechaNacimiento(Date fechaNacimiento) {
-            this.fechaNacimiento = fechaNacimiento;
+        public void setTelefono(int telefono) {
+            this.telefono = telefono;
         }
 
     @Override

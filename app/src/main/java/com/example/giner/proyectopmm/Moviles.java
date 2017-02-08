@@ -13,12 +13,11 @@ public class Moviles {
 
     //Constructor
 
-        public Moviles(int id_movil,String marca,String modelo, String caracteristicas, String procesador, String ram, String almacenamiento,boolean stock, String sistemaoperativo, int precio){
+        public Moviles(int id_movil,String marca,String modelo, String procesador, String ram, String almacenamiento,boolean stock, String sistemaoperativo, int precio){
 
             this.id_movil=id_movil;
             this.marca=marca;
             this.modelo=modelo;
-            this.caracteristicas=caracteristicas;
             this.procesador=procesador;
             this.ram=ram;
             this.almacenamiento=almacenamiento;
@@ -45,14 +44,6 @@ public class Moviles {
 
         public void setModelo(String modelo) {
             this.modelo = modelo;
-        }
-
-        public String getCaracteristicas() {
-            return caracteristicas;
-        }
-
-        public void setCaracteristicas(String caracteristicas) {
-            this.caracteristicas = caracteristicas;
         }
 
         public String getProcesador() {

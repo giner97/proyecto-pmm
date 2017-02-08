@@ -15,5 +15,8 @@
         android:layout_height="wrap_content"
         android:name="com.example.giner.proyectopmm.Fragmento_consultar"
         android:id="@+id/fragment2"
-        tools:layout="@layout/fragmento_consultar" />
+        tools:layout="@layout/fragmento_consultar"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.example.giner.proyectopmm;
 
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -14,7 +15,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class Activity_main extends AppCompatActivity implements FragmentoActivityMain.FragmentoMainListener, TareaRest.TareaRestListener{
+public class Activity_main extends AppCompatActivity implements FragmentoActivityMain.FragmentoMainListener, TareaRest.TareaRestListener, Movil_Dialog.OnListener{
 
     //URL servidor
 
@@ -26,7 +27,9 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
 
     //Creamos las variables
 
-        private FragmentoActivityMain fragment;
+    private FragmentoActivityMain fragment;
+    private Movil_Dialog movil_dialog;
+    private FragmentTransaction transaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +49,6 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
 
         //Comprobaremos que existe conexión de red
         if (infoRed != null && infoRed.isConnected()) {
-
 
 
         }
@@ -110,4 +112,22 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
 
     }
 
+    @Override
+    public void onMuestraMovil(Moviles movil) {
+
+        //Creamos e instanciamos el Custom Dialog
+        transaction = getFragmentManager().beginTransaction();
+        movil_dialog = new Movil_Dialog(movil);
+        movil_dialog.show(transaction,null);
+        movil_dialog.setCancelable(false);
+
+
+    }
+
+    @Override
+    public void onIniciasActividad() {
+        Intent intent = new Intent();
+
+
+    }
 }

@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">Proyecto PMM</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">UD7Practica5</string>
+    <string name="title_activity_second">SecondActivity</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="dni">DNI</string>
+    <string name="telefono">Telefono</string>
+    <string name="title_activity_compra_">Compra_Activity</string>
 </resources>

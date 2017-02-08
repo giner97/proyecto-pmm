@@ -1,5 +1,6 @@
 package com.example.giner.proyectopmm;
 
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +15,9 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class Activity_consultar extends AppCompatActivity implements Fragmento_consultar.FragmentoConsultarListener,TareaRest.TareaRestListener{
+
+    private Cliente_Dialog clienteDialogo;
+    private FragmentTransaction transaction;
 
     //URL servidor
 
@@ -66,7 +70,11 @@ public class Activity_consultar extends AppCompatActivity implements Fragmento_c
     @Override
     public void onMuestraCLiente(Cliente cliente) {
 
-        //Abre dialogo y le paso el objeto
+        //Creamos e instanciamos el Custom Dialog
+        transaction = getFragmentManager().beginTransaction();
+        clienteDialogo = new Cliente_Dialog(cliente);
+        clienteDialogo.show(transaction,null);
+        clienteDialogo.setCancelable(false);
 
     }
 

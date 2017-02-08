@@ -178,9 +178,15 @@ public class Fragmento_consultar extends Fragment implements  AdapterView.OnItem
 
                     //Le paso el arrayAdapter al ListView
 
-                    clientes.setAdapter(arrayAdapterCliente);
+                        clientes.setAdapter(arrayAdapterCliente);
 
                 }
+
+               if(this.listaClientes==null){
+
+                    search.setEnabled(false);
+
+               }
 
             }
 

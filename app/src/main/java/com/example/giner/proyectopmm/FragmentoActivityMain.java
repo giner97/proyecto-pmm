@@ -1,8 +1,11 @@
 package com.example.giner.proyectopmm;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -22,6 +26,8 @@ public class FragmentoActivityMain extends Fragment implements View.OnClickListe
         private ImageButton boton_Consultar;
         private ListView listaMoviles;
         private ArrayList<Moviles>arrayMoviles;
+
+
 
     //Constructor
 
@@ -74,13 +80,17 @@ public class FragmentoActivityMain extends Fragment implements View.OnClickListe
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-
+        Moviles movil= (Moviles) adapterView.getItemAtPosition(i);
+        escuchador.onMuestraMovil(movil);
 
     }
+
+
 
     public interface FragmentoMainListener{
 
         void onConsultar();
+        void onMuestraMovil(Moviles movil);
 
     }
 
