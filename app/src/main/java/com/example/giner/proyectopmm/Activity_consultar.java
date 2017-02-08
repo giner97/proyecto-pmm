@@ -14,10 +14,12 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class Activity_consultar extends AppCompatActivity implements Fragmento_consultar.FragmentoConsultarListener,TareaRest.TareaRestListener{
+public class Activity_consultar extends AppCompatActivity implements Fragmento_consultar.FragmentoConsultarListener,TareaRest.TareaRestListener, ModificaCliente_Dialog.OnModificaListener{
 
     private Cliente_Dialog clienteDialogo;
+    private ModificaCliente_Dialog modificaDialogo;
     private FragmentTransaction transaction;
+    private FragmentTransaction transaction1;
 
     //URL servidor
 
@@ -27,11 +29,12 @@ public class Activity_consultar extends AppCompatActivity implements Fragmento_c
 
         private final static int CONSULTA_CLIENTES = 0;
         private final static int ELIMINA_CLIENTE = 1;
+        private final static int MODIFICA_CLIENTE = 2;
 
     //Creamos las variables
 
         private Fragmento_consultar fragmento;
-        private Cliente clienteSeleccionadoEliminar;
+        private Cliente clienteSeleccionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,10 +84,22 @@ public class Activity_consultar extends AppCompatActivity implements Fragmento_c
     @Override
     public void onEliminaCliente(Cliente cliente) {
 
-        clienteSeleccionadoEliminar=cliente;
+        clienteSeleccionado=cliente;
         String clienteID = Integer.toString(cliente.getId_cliente());
         TareaRest tareaElimina = new TareaRest(this,ELIMINA_CLIENTE,"DELETE",URL_BASE_SERVIDOR+"/cliente/"+clienteID,null,this);
         tareaElimina.execute();
+
+    }
+
+    @Override
+    public void onModificaCliente(Cliente cliente) {
+
+        //Creamos e instanciamos el dialogo
+
+            transaction1 = getFragmentManager().beginTransaction();
+            modificaDialogo=new ModificaCliente_Dialog(cliente);
+            modificaDialogo.show(transaction1,null);
+            modificaDialogo.setCancelable(false);
 
     }
 
@@ -102,7 +117,13 @@ public class Activity_consultar extends AppCompatActivity implements Fragmento_c
 
             else if(codigoOperacion==1){
 
-                fragmento.actualizaLista(clienteSeleccionadoEliminar);
+                fragmento.actualizaLista(clienteSeleccionado);
+
+            }
+
+            else if(codigoOperacion==2){
+
+                fragmento.actualizaListaModificacion();
 
             }
 
@@ -133,4 +154,21 @@ public class Activity_consultar extends AppCompatActivity implements Fragmento_c
 
     }
 
+
+    @Override
+    public void modificaCliente(Cliente cl) {
+
+        Toast.makeText(this,"Funciona",Toast.LENGTH_SHORT).show();
+
+        /* //Creamos un objeto GSON
+            Gson gson = new Gson();
+        //Convertimos el objeto cliente en una cadena JSON
+            String parametroJson = gson.toJson(cliente);
+
+        String clienteID=Integer.toString(cliente.getId_cliente());
+
+        TareaRest tareaModifica = new TareaRest(this,MODIFICA_CLIENTE,"PUT",URL_BASE_SERVIDOR+"/cliente/"+clienteID,parametroJson,this);
+        tareaModifica.execute();*/
+
+    }
 }

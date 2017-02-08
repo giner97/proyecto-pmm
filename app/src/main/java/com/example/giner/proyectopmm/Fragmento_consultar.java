@@ -133,7 +133,8 @@ public class Fragmento_consultar extends Fragment implements  AdapterView.OnItem
         switch (menuItem.getItemId()){
 
             case R.id.modificar:
-                Toast.makeText(getActivity(),"Esto modifica",Toast.LENGTH_SHORT).show();
+
+                escuchador.onModificaCliente(clienteSeleccionado);
                 return true;
 
             case R.id.eliminar:
@@ -155,6 +156,7 @@ public class Fragmento_consultar extends Fragment implements  AdapterView.OnItem
 
             void onMuestraCLiente(Cliente cliente);
             void onEliminaCliente(Cliente cliente);
+            void onModificaCliente(Cliente cliente);
 
         }
 
@@ -195,6 +197,12 @@ public class Fragmento_consultar extends Fragment implements  AdapterView.OnItem
         public void actualizaLista(Cliente cliente){
 
             listaClientes.remove(cliente);
+            arrayAdapterCliente.notifyDataSetChanged();
+
+        }
+
+        public void actualizaListaModificacion(){
+
             arrayAdapterCliente.notifyDataSetChanged();
 
         }

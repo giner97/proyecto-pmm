@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PMM_Moviline.iml" filepath="$PROJECT_DIR$/PMM_Moviline.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ProyectoPMM.iml" filepath="$PROJECT_DIR$/ProyectoPMM.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

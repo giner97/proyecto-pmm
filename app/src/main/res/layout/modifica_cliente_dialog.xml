@@ -5,28 +5,29 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <TextView
-            android:text="Caracteristicas del movil"
+            android:text="Modificar Datos"
             android:textSize="25dp"
             android:textColor="@color/negro"
             android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textViewCaracteristicas"
+            android:id="@+id/textViewModifica"
             android:textStyle="normal|bold" />
 
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:textAlignment="center">
+            android:textAlignment="center"
+            android:layout_margin="15dp">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -34,19 +35,21 @@
                 android:layout_marginRight="10dp">
 
                 <TextView
-                    android:text="Marca:"
+                    android:text="Nombre:"
                     android:textSize="18dp"
                     android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView1" />
 
-                <TextView
-                    android:text="TextView"
-                    android:textSize="15dp"
+                <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textViewMarca"/>
+                    android:inputType="textPersonName"
+                    android:hint="Introduce Nombre"
+                    android:ems="10"
+                    android:id="@+id/editTextNombreModificado" />
+
             </TableRow>
 
             <TableRow
@@ -54,21 +57,45 @@
                 android:layout_height="match_parent" >
 
                 <TextView
-                    android:text="Modelo:"
+                    android:text="Apellidos:"
                     android:textSize="18dp"
                     android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView2" />
 
-                <TextView
-                    android:text="TextView"
-                    android:textSize="15dp"
+                <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textViewModelo" />
+                    android:inputType="textPersonName"
+                    android:hint="Introduce Apellidos"
+                    android:ems="10"
+                    android:id="@+id/editTextApellidosModificado"/>
+
             </TableRow>
 
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:text="DNI:"
+                    android:textSize="18dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView3" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:hint="Introduce DNI"
+                    android:ems="10"
+                    android:id="@+id/editTextDNIModificado"/>
+
+            </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
@@ -76,20 +103,22 @@
                 >
 
                 <TextView
-                    android:text="Procesador:"
+                    android:text="Provincia:"
                     android:textSize="18dp"
                     android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView4" />
 
-
-                <TextView
-                    android:text="TextView"
-                    android:textSize="15dp"
+                <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textViewProcesador" />
+                    android:inputType="textPersonName"
+                    android:hint="Introduce Localidad"
+                    android:ems="10"
+                    android:id="@+id/editTextProvinciaModificada"/>
+
+
             </TableRow>
 
             <TableRow
@@ -97,74 +126,50 @@
                 android:layout_height="match_parent" >
 
                 <TextView
-                    android:text="RAM:"
+                    android:text="Telefono:"
                     android:textSize="18dp"
                     android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView5" />
 
-                <TextView
-                    android:text="TextView"
-                    android:textSize="15dp"
+                <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textViewRAM" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <TextView
-                    android:text="Precio:"
-                    android:textSize="18dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView6" />
-
-                <TextView
-                    android:text="TextView"
-                    android:textSize="15dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textViewPrecio" />
-
+                    android:inputType="phone"
+                    android:hint="Introduce Telefono"
+                    android:ems="10"
+                    android:id="@+id/editTextTelefonoModificado"/>
 
             </TableRow>
 
         </TableLayout>
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="15dp">
+            android:layout_height="match_parent">
 
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_margin="20dp"
-                app:srcCompat="@drawable/return_button"
-                android:id="@+id/imageButtonVolver"
-                android:background="@android:color/transparent"
-                android:layout_weight="1" />
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_margin="20dp"
                 android:layout_gravity="center"
-                app:srcCompat="@drawable/buy_phone"
-                android:id="@+id/imageButtonComprar"
+                android:id="@+id/imageButtonVolverModifica"
                 android:background="@android:color/transparent"
+                app:srcCompat="@drawable/return_button"
                 android:layout_weight="1" />
 
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_gravity="center"
+                android:id="@+id/imageButtonModifica"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/return_button"
+                android:layout_weight="1"  />
         </LinearLayout>
 
     </LinearLayout>
-
-
 </RelativeLayout>

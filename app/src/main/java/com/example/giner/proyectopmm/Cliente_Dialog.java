@@ -15,8 +15,6 @@ import android.widget.TextView;
 
 public class Cliente_Dialog extends DialogFragment implements View.OnClickListener {
 
-
-
     private TextView textViewNombre;
     private TextView textViewApellidos;
     private TextView textViewDNI;

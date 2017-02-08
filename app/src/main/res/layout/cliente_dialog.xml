@@ -97,7 +97,7 @@
                 >
 
                 <TextView
-                    android:text="Localidad:"
+                    android:text="Provincia:"
                     android:textSize="18dp"
                     android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"
