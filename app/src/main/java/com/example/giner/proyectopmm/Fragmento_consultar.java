@@ -30,7 +30,6 @@ public class Fragmento_consultar extends Fragment implements  AdapterView.OnItem
         private FragmentoConsultarListener escuchador;
         private ArrayList<Cliente>listaClientes;
         private Cliente clienteSeleccionado;
-        private int numSeleccionado;
 
     //Constructor
 

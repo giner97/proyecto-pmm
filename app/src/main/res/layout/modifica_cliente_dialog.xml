@@ -114,7 +114,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-                    android:hint="Introduce Localidad"
+                    android:hint="Introduce Provincia"
                     android:ems="10"
                     android:id="@+id/editTextProvinciaModificada"/>
 
@@ -155,9 +155,9 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:layout_gravity="center"
-                android:id="@+id/imageButtonVolverModifica"
+                android:id="@+id/imageButtonModifica"
                 android:background="@android:color/transparent"
-                app:srcCompat="@drawable/return_button"
+                app:srcCompat="@drawable/okey"
                 android:layout_weight="1" />
 
             <ImageButton
@@ -165,7 +165,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:layout_gravity="center"
-                android:id="@+id/imageButtonModifica"
+                android:id="@+id/imageButtonVolverModifica"
                 android:background="@android:color/transparent"
                 app:srcCompat="@drawable/return_button"
                 android:layout_weight="1"  />

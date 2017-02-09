@@ -98,8 +98,7 @@ public class Movil_Dialog extends DialogFragment implements View.OnClickListener
 
         if (view.getId()==R.id.imageButtonComprar){
 
-
-
+            escuchador.onIniciasActividad();
 
         }
 

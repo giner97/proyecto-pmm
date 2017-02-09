@@ -100,6 +100,7 @@ public class Activity_consultar extends AppCompatActivity implements Fragmento_c
             modificaDialogo=new ModificaCliente_Dialog(cliente);
             modificaDialogo.show(transaction1,null);
             modificaDialogo.setCancelable(false);
+            modificaDialogo.setModificaoListener(this);
 
     }
 
@@ -156,11 +157,9 @@ public class Activity_consultar extends AppCompatActivity implements Fragmento_c
 
 
     @Override
-    public void modificaCliente(Cliente cl) {
+    public void modificaCliente(Cliente cliente) {
 
-        Toast.makeText(this,"Funciona",Toast.LENGTH_SHORT).show();
-
-        /* //Creamos un objeto GSON
+         //Creamos un objeto GSON
             Gson gson = new Gson();
         //Convertimos el objeto cliente en una cadena JSON
             String parametroJson = gson.toJson(cliente);
@@ -168,7 +167,7 @@ public class Activity_consultar extends AppCompatActivity implements Fragmento_c
         String clienteID=Integer.toString(cliente.getId_cliente());
 
         TareaRest tareaModifica = new TareaRest(this,MODIFICA_CLIENTE,"PUT",URL_BASE_SERVIDOR+"/cliente/"+clienteID,parametroJson,this);
-        tareaModifica.execute();*/
+        tareaModifica.execute();
 
     }
 }

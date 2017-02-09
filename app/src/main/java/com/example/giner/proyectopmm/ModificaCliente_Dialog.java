@@ -101,18 +101,31 @@ public class ModificaCliente_Dialog extends DialogFragment implements View.OnCli
 
             if((!editNombre.getText().toString().isEmpty())&&(!editApellidos.getText().toString().isEmpty())&&(!editDNI.getText().toString().isEmpty())&&(!editProvincia.getText().toString().isEmpty())&&(!editTelf.getText().toString().isEmpty())){
 
-                clienteAModificar.setNombre(editNombre.getText().toString());
-                clienteAModificar.setApellidos(editApellidos.getText().toString());
-                clienteAModificar.setDni(editDNI.getText().toString());
-                clienteAModificar.setProvincia(editProvincia.getText().toString());
-                clienteAModificar.setTelefono(Integer.valueOf(editTelf.getText().toString()));
-                escuchador.modificaCliente(clienteAModificar);
+                if((!(editNombre.getText().toString()).equals(clienteAModificar.getNombre()))||(!(editApellidos.getText().toString()).equals(clienteAModificar.getApellidos()))||(!(editProvincia.getText().toString()).equals(clienteAModificar.getProvincia()))||(!(editDNI.getText().toString()).equals(clienteAModificar.getDni()))||(Integer.valueOf(editTelf.getText().toString())!=clienteAModificar.getTelefono())){
+
+                    clienteAModificar.setNombre(editNombre.getText().toString());
+                    clienteAModificar.setApellidos(editApellidos.getText().toString());
+                    clienteAModificar.setDni(editDNI.getText().toString());
+                    clienteAModificar.setProvincia(editProvincia.getText().toString());
+                    clienteAModificar.setTelefono(Integer.valueOf(editTelf.getText().toString()));
+                    escuchador.modificaCliente(clienteAModificar);
+                    dismiss();
+
+                    //
+
+                }
+
+                else{
+
+                    Toast.makeText(getActivity(), "Se han introducido los mismos datos.", Toast.LENGTH_SHORT).show();
+
+                }
 
             }
 
             else{
 
-                Toast.makeText(getActivity(), "Hay un campo vacio.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Hay algún campo vacio.", Toast.LENGTH_SHORT).show();
 
             }
 

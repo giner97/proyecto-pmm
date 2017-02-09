@@ -25,6 +25,8 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
 
     private final static int CONSULTA_MOVILES = 0;
 
+    private  final static int REQUEST_CODE=0;
+
     //Creamos las variables
 
     private FragmentoActivityMain fragment;
@@ -38,14 +40,14 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
 
         //Instanciamos el fragmento
 
-            fragment=(FragmentoActivityMain)getFragmentManager().findFragmentById(R.id.fragment);
-            fragment.setFragmentoMainListener(this);
+        fragment=(FragmentoActivityMain)getFragmentManager().findFragmentById(R.id.fragment);
+        fragment.setFragmentoMainListener(this);
 
         //Se usa la clase ConnectivityManager para obtener las características actuales de la conexión.
-            ConnectivityManager gestorConexion = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager gestorConexion = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
 
         //Esta información la guardamos en un elemento del tipo NetworkInfo con el método getActiveNetworkInfo().
-            NetworkInfo infoRed = gestorConexion.getActiveNetworkInfo();
+        NetworkInfo infoRed = gestorConexion.getActiveNetworkInfo();
 
         //Comprobaremos que existe conexión de red
         if (infoRed != null && infoRed.isConnected()) {
@@ -56,12 +58,12 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
         else {
 
             // Mostrar errores
-            Toast.makeText(this, "No hay conexión de red.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"No hay conexión de red.",Toast.LENGTH_SHORT).show();
 
         }
 
-       TareaRest tarea = new TareaRest(this,CONSULTA_MOVILES,"GET",URL_BASE_SERVIDOR+"/movil",null,this);
-       tarea.execute();
+        TareaRest tareaMovilRest = new TareaRest(this,CONSULTA_MOVILES,"GET",URL_BASE_SERVIDOR+"/movil",null,this);
+        tareaMovilRest.execute();
 
     }
 
@@ -98,6 +100,7 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
 
             //Publico un Toast en la activity que nos llamó
             Toast.makeText(Activity_main.this, e.getMessage(), Toast.LENGTH_LONG).show();
+
             return null;
 
         }
@@ -107,8 +110,10 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
     @Override
     public void onConsultar() {
 
+
         Intent intencion = new Intent(this,Activity_consultar.class);
         startActivity(intencion);
+
 
     }
 
@@ -120,13 +125,24 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
         movil_dialog = new Movil_Dialog(movil);
         movil_dialog.show(transaction,null);
         movil_dialog.setCancelable(false);
-
+        movil_dialog.setListener(this);
 
     }
 
     @Override
     public void onIniciasActividad() {
-        Intent intent = new Intent();
+
+
+        Intent intent = new Intent(this,Activity_compra.class);
+
+        startActivityForResult(intent, REQUEST_CODE);
+
+
+    }
+
+    private void startActivityForResult(Intent intent) {
+
+
 
 
     }
