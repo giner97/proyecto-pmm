@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -14,12 +16,13 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class Activity_consultar extends AppCompatActivity implements Fragmento_consultar.FragmentoConsultarListener,TareaRest.TareaRestListener, ModificaCliente_Dialog.OnModificaListener{
+public class Activity_consultar extends AppCompatActivity implements View.OnClickListener, Fragmento_consultar.FragmentoConsultarListener,TareaRest.TareaRestListener, ModificaCliente_Dialog.OnModificaListener{
 
     private Cliente_Dialog clienteDialogo;
     private ModificaCliente_Dialog modificaDialogo;
     private FragmentTransaction transaction;
     private FragmentTransaction transaction1;
+
 
     //URL servidor
 
@@ -43,8 +46,9 @@ public class Activity_consultar extends AppCompatActivity implements Fragmento_c
 
         //Instancio el frgamento
 
-            fragmento=(Fragmento_consultar)getFragmentManager().findFragmentById(R.id.fragment2);
-            fragmento.setFragmentoConsultarListener(this);
+        fragmento=(Fragmento_consultar)getFragmentManager().findFragmentById(R.id.fragment2);
+        fragmento.setFragmentoConsultarListener(this);
+
 
         //Se usa la clase ConnectivityManager para obtener las características actuales de la conexión.
             ConnectivityManager gestorConexion = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -168,6 +172,11 @@ public class Activity_consultar extends AppCompatActivity implements Fragmento_c
 
         TareaRest tareaModifica = new TareaRest(this,MODIFICA_CLIENTE,"PUT",URL_BASE_SERVIDOR+"/cliente/"+clienteID,parametroJson,this);
         tareaModifica.execute();
+
+    }
+
+    @Override
+    public void onClick(View view) {
 
     }
 }

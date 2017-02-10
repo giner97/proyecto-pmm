@@ -111,8 +111,6 @@ public class ModificaCliente_Dialog extends DialogFragment implements View.OnCli
                     escuchador.modificaCliente(clienteAModificar);
                     dismiss();
 
-                    //
-
                 }
 
                 else{
@@ -125,7 +123,7 @@ public class ModificaCliente_Dialog extends DialogFragment implements View.OnCli
 
             else{
 
-                Toast.makeText(getActivity(), "Hay algún campo vacio.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Te has dejado algun campo vacio.", Toast.LENGTH_SHORT).show();
 
             }
 

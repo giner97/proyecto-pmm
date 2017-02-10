@@ -13,6 +13,8 @@ public class Cliente {
 
     //Constructor
 
+    public Cliente(){}
+
         public Cliente(int id_cliente,String nombre,String apellidos,String dni,int cp, String pais, String comunidadAutonoma, String provincia, String domicilio,int telefono){
 
             this.id_cliente=id_cliente;
@@ -27,6 +29,12 @@ public class Cliente {
             this.telefono=telefono;
 
         }
+
+    public Cliente(String nombre, String apellidos, String dni, int telefono) {
+
+
+
+    }
 
     //Getters y Setters
 

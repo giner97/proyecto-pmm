@@ -18,8 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Compra_Activity"
+            android:label="@string/title_activity_compra_"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity_consultar" />
-        <activity android:name=".Activity_compra"></activity>
     </application>
 
 </manifest>

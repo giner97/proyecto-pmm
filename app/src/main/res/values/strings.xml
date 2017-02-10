@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">UD7Practica5</string>
     <string name="title_activity_second">SecondActivity</string>
-    <string name="nombre">Nombre</string>
-    <string name="apellidos">Apellidos</string>
-    <string name="dni">DNI</string>
-    <string name="telefono">Telefono</string>
-    <string name="title_activity_compra_">Compra_Activity</string>
+    <string name="nombre">Inserte Nombre</string>
+    <string name="apellidos">Inserte Apellidos</string>
+    <string name="dni">Inserte DNI</string>
+    <string name="telefono">Inserte Telefono</string>
+    <string name="title_activity_compra_">Inserte Compra_Activity</string>
+    <string name="title_activity_compra_2">Inserte Compra_Activity2</string>
 </resources>

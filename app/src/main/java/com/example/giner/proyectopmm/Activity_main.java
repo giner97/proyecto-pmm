@@ -22,9 +22,8 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
     private final static String URL_BASE_SERVIDOR = "http://alvaro-ricardo-pmm.hol.es/";
 
     //Constantes con el codigo personalizado
-
+    public final static int CODIGO_INSERCIÓN_CLIENTE = 2;
     private final static int CONSULTA_MOVILES = 0;
-
     private  final static int REQUEST_CODE=0;
 
     //Creamos las variables
@@ -133,7 +132,7 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
     public void onIniciasActividad() {
 
 
-        Intent intent = new Intent(this,Activity_compra.class);
+        Intent intent = new Intent(this,Compra_Activity.class);
 
         startActivityForResult(intent, REQUEST_CODE);
 

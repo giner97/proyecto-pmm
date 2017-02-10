@@ -3,6 +3,7 @@ package com.example.giner.proyectopmm;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -26,6 +27,7 @@ public class Fragmento_consultar extends Fragment implements  AdapterView.OnItem
 
         private EditText search;
         private ListView clientes;
+        private FloatingActionButton fab;
         private ArrayAdapter<Cliente>arrayAdapterCliente;
         private FragmentoConsultarListener escuchador;
         private ArrayList<Cliente>listaClientes;
@@ -58,7 +60,10 @@ public class Fragmento_consultar extends Fragment implements  AdapterView.OnItem
 
         //Instanciamos los widgets
 
-            search = (EditText)v.findViewById(R.id.buscar);
+        fab = (FloatingActionButton) v.findViewById(R.id.addUser);
+
+
+        search = (EditText)v.findViewById(R.id.buscar);
             clientes = (ListView)v.findViewById(R.id.listViewClientes);
 
         ////Escuchador para el edittext

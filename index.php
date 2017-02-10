@@ -167,6 +167,111 @@ $app->get('/',function()use ($app){
             }
             
         });
+        
+    //Modifica cliente
+        
+        $app->put('/cliente/:id',function($id)use($app,$db){
+            
+            try{  
+            
+                //Obtenemos el contenido de la peticion
+
+                    $cuerpoPeticion = $app->request()->getBody();
+                    $cliente = json_decode($cuerpoPeticion);
+
+                //Obetenemos los atributos del objeto cliente
+
+                    $nombreCliente=$cliente->nombre;
+                    $apellidosCliente=$cliente->apellidos;
+                    $dniCliente=$cliente->dni;
+                    $provinciaCliente=$cliente->provincia;
+                    $telefonoCliente=$cliente->telefono;
+                    
+                //Preparamos la consulta
+                    
+                    $consulta = $db->prepare("update Cliente set nombre='$nombreCliente', apellidos='$apellidosCliente', dni='$dniCliente', provincia = '$provinciaCliente', telefono='$telefonoCliente' where id_cliente=$id");
+                    
+                //Ejecutamos la consulta
+                    
+                    $resultado = $consulta->execute();
+            
+                    if ($resultado){
+                        
+                        if ($consulta->rowCount()==1){
+                             echo "Cliente modificado";
+                        }
+                        else {
+                            //No existía el cliente
+                             $app->response()->setStatus(404);
+                              echo "No existe el cliente especificado";
+                        }
+
+                    }
+                    else {
+                        //En caso de error Mysql
+                        throw new PDOException($consulta->errorInfo()[2]);
+                    }
+
+            } catch (PDOException $e) {
+                $app->response()->setStatus(404);
+                //Si no hay resultados getmessage() devolverá una cadena vacía
+                echo $e->getMessage();
+            }    
+             
+        });
+        
+    //Insercion de Clientes
+        
+        $app->post('/cliente/',function()use($app,$db){
+            
+            try{
+               
+            //Obtenemos el contenido de la peticion 
+               
+                $cuerpoPeticion = $app->request()->getBody();
+                $cliente = json_decode($cuerpoPeticion);
+                   
+            //Obtengo todos los atributos del objeto Cliente
+                   
+                $nombreCliente=$cliente->nombre;
+                $apellidosCliente=$cliente->apellidos;
+                $dniCliente=$cliente->dni;
+                $provinciaCliente=$cliente->provincia;
+                $telefonoCliente=$cliente->telefono; 
+                
+            //Preparamos la consulta
+                
+                $consulta = $db->prepare("Insert into Cliente(nombre,apellidos,dni,provincia,telefono,activo) values('$nombreCliente','$apellidosCliente','$dniCliente','$provinciaCliente','$telefonoCliente',1);");
+            
+            //Ejecutamos la consulta
+                    
+                $resultado = $consulta->execute();    
+            
+                if ($resultado){
+
+                    if ($consulta->rowCount()==1){
+                        echo "Cliente añadido";
+                    }
+                    else {
+                        //No existía el cliente
+                            $app->response()->setStatus(404);
+                            echo "Error en la insercion";
+                    }
+
+                }
+
+                else {
+                    //En caso de error Mysql
+                        throw new PDOException($consulta->errorInfo()[2]);
+                }
+
+            } catch (PDOException $e) {
+                $app->response()->setStatus(404);
+                //Si no hay resultados getmessage() devolverá una cadena vacía
+                echo $e->getMessage();
+            }
+            
+           });
     
     $app->run();
     
