@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">UD7Practica5</string>
+    <string name="app_name">MOVILINE</string>
     <string name="title_activity_second">SecondActivity</string>
     <string name="nombre">Inserte Nombre</string>
     <string name="apellidos">Inserte Apellidos</string>
@@ -7,4 +7,23 @@
     <string name="telefono">Inserte Telefono</string>
     <string name="title_activity_compra_">Inserte Compra_Activity</string>
     <string name="title_activity_compra_2">Inserte Compra_Activity2</string>
+    <string name="nombreClienteDialog">Nombre:</string>
+    <string name="apellidosClienteDialog">Apellidos:</string>
+    <string name="dniClienteDialog">DNI:</string>
+    <string name="provinciaClienteDialog">Provincia:</string>
+    <string name="telefonoClienteDialog">Telefono:</string>
+    <string name="caracteristicasMovilDialog">Caracteristicas del movil</string>
+    <string name="marcaMovilDialog">Marca:</string>
+    <string name="modeloMovilDialog">Modelo:</string>
+    <string name="procesadorMovilDialog">Procesador:</string>
+    <string name="ramMovilDialog">RAM:</string>
+    <string name="precioMovilDialog">Precio:</string>
+    <string name="modificarClienteDatos">Modificar Datos</string>
+    <string name="modificaClienteNombre">Nombre:</string>
+    <string name="modificaClienteApellidos">Apellidos:</string>
+    <string name="modificaClienteDni">DNI:</string>
+    <string name="modificaClienteProvincia">Provincia:</string>
+    <string name="modificaClienteTelefono">Telefono:</string>
+    <string name="buscarCliente">Buscar cliente</string>
+    <string name="stockMovilDialog">Stock:</string>
 </resources>

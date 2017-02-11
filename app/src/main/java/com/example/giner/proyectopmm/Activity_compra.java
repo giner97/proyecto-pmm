@@ -1,6 +1,5 @@
 package com.example.giner.proyectopmm;
 
-import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
@@ -8,9 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -26,37 +23,54 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class Compra_Activity extends AppCompatActivity implements  Registro_Dialog.OnInsertarCliente, AdapterView.OnItemClickListener, View.OnClickListener,TareaRest.TareaRestListener,TextWatcher{
+import es.dmoral.toasty.Toasty;
+
+public class Activity_compra extends AppCompatActivity implements Registro_Dialog.OnInsertarCliente, AdapterView.OnItemClickListener, View.OnClickListener,TareaRest.TareaRestListener,TextWatcher,IMEI_Dialog.OnImeiDialog{
 
     //URL servidor
     private final static String URL_BASE_SERVIDOR = "http://alvaro-ricardo-pmm.hol.es/";
 
-    private FloatingActionButton fab;
+    private FloatingActionButton floatingActionButton;
     private Registro_Dialog registro_dialog;
+    private IMEI_Dialog imei_dialogo;
     private FragmentTransaction transaction;
+    private FragmentTransaction transactionImei;
     private ArrayAdapter<Cliente> arrayAdapterCliente;
     private ArrayList<Cliente>listaClientes;
     private ListView clientes;
     private Cliente clienteCreado;
     private EditText searchClientes;
+    private int idMovilseleccionado;
+    private Cliente clienteSeleccionado;
+    private Compra compraAJSON;
 
     //Constantes con el codigo personalizado
 
         private final static int CONSULTA_CLIENTE = 0;
         private final static int INSERCION_CLIENTE = 1;
-
+        private final static int INSERCION_COMPRA= 2;
+        private final static int MODIFICA_MOVIL= 3;
+        private final static int CONSULTA_MOVIL_SELECCIONADO =4;
+        private final static int CONSULTA_CLIENTE_ACTUALIZA = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compra);
 
+        //Recupero el id del movil seleccionado
+
+            Intent recibeIDMovil=getIntent();
+            idMovilseleccionado=recibeIDMovil.getIntExtra(Activity_main.KEY_MOVIL,-1);
+
         clientes = (ListView)findViewById(R.id.listViewClientesCompra);
-        fab= (FloatingActionButton)findViewById(R.id.addUser);
-        fab.setOnClickListener(this);
+        floatingActionButton = (FloatingActionButton)findViewById(R.id.addUser);
+        floatingActionButton.setOnClickListener(this);
 
         searchClientes=(EditText)findViewById(R.id.search);
         searchClientes.addTextChangedListener(this);
+
+        clientes.setOnItemClickListener(this);
 
         //Se usa la clase ConnectivityManager para obtener las características actuales de la conexión.
         ConnectivityManager gestorConexion = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -101,8 +115,12 @@ public class Compra_Activity extends AppCompatActivity implements  Registro_Dial
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-
-
+        clienteSeleccionado=(Cliente)adapterView.getItemAtPosition(i);
+        transactionImei = getFragmentManager().beginTransaction();
+        imei_dialogo = new IMEI_Dialog();
+        imei_dialogo.setImeiDialogListener(this);
+        imei_dialogo.show(transactionImei,null);
+        imei_dialogo.setCancelable(false);
 
 
     }
@@ -124,6 +142,42 @@ public class Compra_Activity extends AppCompatActivity implements  Registro_Dial
 
         }
 
+        else if(codigoOperacion==2){
+
+            Toasty.success(this, "Compra realizada con éxito.", Toast.LENGTH_SHORT).show();
+
+            //--------------------FASE DE PRUEBAS----------------------
+
+            TareaRest tareaBuscaMovilSeleccionado = new TareaRest(this,CONSULTA_MOVIL_SELECCIONADO, "GET",URL_BASE_SERVIDOR+"/movil/"+idMovilseleccionado,null,this);
+            tareaBuscaMovilSeleccionado.execute();
+
+        }
+
+        else if(codigoOperacion==4){
+
+            Moviles objetoRecuperado = procesarMoviles(respuestaJson);
+            objetoRecuperado.setStock(objetoRecuperado.getStock()-1);
+
+            //Creamos un objeto GSON
+
+            Gson gson = new Gson();
+
+            //Convertimos un objeto compra en una cadena JSON
+
+            String parametroJson = gson.toJson(objetoRecuperado);
+
+            TareaRest tareaModifica = new TareaRest(this,MODIFICA_MOVIL,"PUT",URL_BASE_SERVIDOR+"/movil/"+idMovilseleccionado,parametroJson,this);
+            tareaModifica.execute();
+
+        }
+
+        else if(codigoOperacion==3){
+
+            finish();
+
+        }
+
+
     }
 
     //Convierte un objeto JSON en un arrayList de Moviles
@@ -141,13 +195,31 @@ public class Compra_Activity extends AppCompatActivity implements  Registro_Dial
 
         catch (Exception e){
 
-            //Publico un Toast en la activity que nos llamó
-            Toast.makeText(Compra_Activity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Toasty.error(Activity_compra.this, e.getMessage(), Toast.LENGTH_LONG).show();
 
             return null;
 
         }
 
+    }
+
+    //Convierte un objeto JSON en un Movil
+    private Moviles procesarMoviles (String objetoJSON){
+        Gson gson = new Gson();
+        try {
+
+            Moviles movil = gson.fromJson(objetoJSON,Moviles.class);
+            return movil;
+
+        }
+
+        catch (Exception e){
+
+            Toasty.error(Activity_compra.this, e.getMessage(), Toast.LENGTH_LONG).show();
+
+            return null;
+
+        }
     }
 
     public void generaListView(){
@@ -168,7 +240,8 @@ public class Compra_Activity extends AppCompatActivity implements  Registro_Dial
 
             else{
 
-                Toast.makeText(this,"Ha ocurrido un error",Toast.LENGTH_LONG).show();
+                //Toast.makeText(this,"Ha ocurrido un error",Toast.LENGTH_LONG).show();
+                Toasty.error(this, "Ha ocurrido un error", Toast.LENGTH_LONG).show();
 
             }
 
@@ -182,7 +255,7 @@ public class Compra_Activity extends AppCompatActivity implements  Registro_Dial
 
         //Guardamos el cliente
         this.clienteCreado=cliente;
-        //Cremaos un objeto GSON
+        //Creamos un objeto GSON
         Gson gson = new Gson();
         //Convertimos un objeto Alumno en una cadena JSON
         String parametroJson = gson.toJson(cliente);
@@ -213,6 +286,29 @@ public class Compra_Activity extends AppCompatActivity implements  Registro_Dial
 
     @Override
     public void afterTextChanged(Editable editable) {
+
+    }
+
+    @Override
+    public void ejecutaTareaCompra(long imei) {
+
+        //Instancio el objeto compra
+
+            compraAJSON = new Compra();
+
+        compraAJSON.setId_cliente(clienteSeleccionado.getId_cliente());
+        compraAJSON.setImei(imei);
+        compraAJSON.setId_movil(idMovilseleccionado);
+
+        //Creamos un objeto GSON
+
+            Gson gson = new Gson();
+
+        //Convertimos un objeto compra en una cadena JSON
+
+            String parametroJson = gson.toJson(compraAJSON);
+            TareaRest tarea = new TareaRest(this,INSERCION_COMPRA,"POST",URL_BASE_SERVIDOR+"/compra",parametroJson,this);
+            tarea.execute();
 
     }
 }

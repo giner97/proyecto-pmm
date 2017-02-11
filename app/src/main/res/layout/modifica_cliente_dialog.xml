@@ -13,7 +13,7 @@
         android:layout_alignParentStart="true">
 
         <TextView
-            android:text="Modificar Datos"
+            android:text="@string/modificarClienteDatos"
             android:textSize="25dp"
             android:textColor="@color/negro"
             android:textAlignment="center"
@@ -35,7 +35,7 @@
                 android:layout_marginRight="10dp">
 
                 <TextView
-                    android:text="Nombre:"
+                    android:text="@string/modificaClienteNombre"
                     android:textSize="18dp"
                     android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"
@@ -48,6 +48,7 @@
                     android:inputType="textPersonName"
                     android:hint="Introduce Nombre"
                     android:ems="10"
+                    android:maxLength="30"
                     android:id="@+id/editTextNombreModificado" />
 
             </TableRow>
@@ -57,7 +58,7 @@
                 android:layout_height="match_parent" >
 
                 <TextView
-                    android:text="Apellidos:"
+                    android:text="@string/modificaClienteApellidos"
                     android:textSize="18dp"
                     android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"
@@ -70,6 +71,7 @@
                     android:inputType="textPersonName"
                     android:hint="Introduce Apellidos"
                     android:ems="10"
+                    android:maxLength="30"
                     android:id="@+id/editTextApellidosModificado"/>
 
             </TableRow>
@@ -80,7 +82,7 @@
                 android:layout_height="match_parent" >
 
                 <TextView
-                    android:text="DNI:"
+                    android:text="@string/modificaClienteDni"
                     android:textSize="18dp"
                     android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"
@@ -92,6 +94,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
                     android:hint="Introduce DNI"
+                    android:maxLength="9"
                     android:ems="10"
                     android:id="@+id/editTextDNIModificado"/>
 
@@ -103,7 +106,7 @@
                 >
 
                 <TextView
-                    android:text="Provincia:"
+                    android:text="@string/modificaClienteProvincia"
                     android:textSize="18dp"
                     android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"
@@ -115,6 +118,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
                     android:hint="Introduce Provincia"
+                    android:maxLength="30"
                     android:ems="10"
                     android:id="@+id/editTextProvinciaModificada"/>
 
@@ -126,7 +130,7 @@
                 android:layout_height="match_parent" >
 
                 <TextView
-                    android:text="Telefono:"
+                    android:text="@string/modificaClienteTelefono"
                     android:textSize="18dp"
                     android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"
@@ -138,6 +142,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="phone"
                     android:hint="Introduce Telefono"
+                    android:maxLength="9"
                     android:ems="10"
                     android:id="@+id/editTextTelefonoModificado"/>
 
@@ -155,9 +160,9 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:layout_gravity="center"
-                android:id="@+id/imageButtonModifica"
+                android:id="@+id/imageButtonVolverModifica"
                 android:background="@android:color/transparent"
-                app:srcCompat="@drawable/okey"
+                app:srcCompat="@drawable/return_button"
                 android:layout_weight="1" />
 
             <ImageButton
@@ -165,9 +170,9 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:layout_gravity="center"
-                android:id="@+id/imageButtonVolverModifica"
+                android:id="@+id/imageButtonModifica"
                 android:background="@android:color/transparent"
-                app:srcCompat="@drawable/return_button"
+                app:srcCompat="@drawable/okey"
                 android:layout_weight="1"  />
         </LinearLayout>
 

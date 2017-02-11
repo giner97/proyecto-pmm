@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -17,6 +18,8 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import es.dmoral.toasty.Toasty;
 
 public class FragmentoActivityMain extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
 
@@ -26,7 +29,8 @@ public class FragmentoActivityMain extends Fragment implements View.OnClickListe
         private ImageButton boton_Consultar;
         private ListView listaMoviles;
         private ArrayList<Moviles>arrayMoviles;
-
+        private Moviles movil;
+        private ArrayAdapter<Moviles> arrayAdapter;
 
 
     //Constructor
@@ -80,8 +84,9 @@ public class FragmentoActivityMain extends Fragment implements View.OnClickListe
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-        Moviles movil= (Moviles) adapterView.getItemAtPosition(i);
+        movil=(Moviles)adapterView.getItemAtPosition(i);
         escuchador.onMuestraMovil(movil);
+
 
     }
 
@@ -108,13 +113,19 @@ public class FragmentoActivityMain extends Fragment implements View.OnClickListe
 
             //Creamos un arrayAdapter y le pasamos el arrayList
 
-            ArrayAdapterMoviles arrayAdapter = new ArrayAdapterMoviles(getActivity(), arrayMoviles);
+             arrayAdapter= new ArrayAdapterMoviles(getActivity(), arrayMoviles);
 
             //pasamos el arrayList al listView
 
             listaMoviles.setAdapter(arrayAdapter);
 
         }
+
+    }
+
+    public void actualizaFragmentoArrayAdapterMoviles(){
+
+        arrayAdapter.notifyDataSetChanged();
 
     }
 

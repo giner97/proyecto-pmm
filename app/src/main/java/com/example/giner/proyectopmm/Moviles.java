@@ -1,29 +1,40 @@
 package com.example.giner.proyectopmm;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
-public class Moviles {
+public class Moviles{
 
     //Variables
 
-        private String marca,modelo,caracteristicas,procesador,ram,almacenamiento,sistemaoperativo;
-        private int precio,id_movil;
-        private boolean stock;
+        private String marca;
+        private String modelo;
+        private String procesador;
+        private String ram;
+        private int precio;
+        private int id_movil;
+        private int stock;
+        private Moviles movil;
 
     //Constructor
 
-        public Moviles(int id_movil,String marca,String modelo, String procesador, String ram, String almacenamiento,boolean stock, String sistemaoperativo, int precio){
+    public Moviles(){
+
+
+    }
+
+        public Moviles(int id_movil,String marca,String modelo, String procesador, String ram,int precio,int stock){
 
             this.id_movil=id_movil;
             this.marca=marca;
             this.modelo=modelo;
             this.procesador=procesador;
             this.ram=ram;
-            this.almacenamiento=almacenamiento;
-            this.stock=stock;
-            this.sistemaoperativo=sistemaoperativo;
             this.precio=precio;
+            this.stock=stock;
 
         }
 
@@ -62,22 +73,6 @@ public class Moviles {
             this.ram = ram;
         }
 
-        public String getAlmacenamiento() {
-            return almacenamiento;
-        }
-
-        public void setAlmacenamiento(String almacenamiento) {
-            this.almacenamiento = almacenamiento;
-        }
-
-        public String getSistemaoperativo() {
-            return sistemaoperativo;
-        }
-
-        public void setSistemaoperativo(String sistemaoperativo) {
-            this.sistemaoperativo = sistemaoperativo;
-        }
-
         public int getPrecio() {
             return precio;
         }
@@ -94,13 +89,12 @@ public class Moviles {
             this.id_movil = id_movil;
         }
 
-        public boolean isStock() {
+        public int getStock() {
             return stock;
         }
 
-        public void setStock(boolean stock) {
+        public void setStock(int stock) {
             this.stock = stock;
         }
-
 
 }

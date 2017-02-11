@@ -20,6 +20,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.zip.Inflater;
 
+import es.dmoral.toasty.Toasty;
+
 
 public class Fragmento_consultar extends Fragment implements  AdapterView.OnItemClickListener, TextWatcher, AdapterView.OnItemLongClickListener, PopupMenu.OnMenuItemClickListener{
 
@@ -62,9 +64,8 @@ public class Fragmento_consultar extends Fragment implements  AdapterView.OnItem
 
         fab = (FloatingActionButton) v.findViewById(R.id.addUser);
 
-
         search = (EditText)v.findViewById(R.id.buscar);
-            clientes = (ListView)v.findViewById(R.id.listViewClientes);
+        clientes = (ListView)v.findViewById(R.id.listViewClientes);
 
         ////Escuchador para el edittext
 
@@ -208,6 +209,7 @@ public class Fragmento_consultar extends Fragment implements  AdapterView.OnItem
         public void actualizaListaModificacion(){
 
             arrayAdapterCliente.notifyDataSetChanged();
+            Toasty.success(getActivity(), "Usuario modificado correctamente.", Toast.LENGTH_SHORT).show();
 
         }
 

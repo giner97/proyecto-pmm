@@ -9,8 +9,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import es.dmoral.toasty.Toasty;
 
 /**
  * Created by ricardo on 05/02/2017.
@@ -22,7 +25,7 @@ public class Movil_Dialog extends DialogFragment implements View.OnClickListener
 
     private TextView textViewMarca;
     private TextView textViewModelo;
-    private TextView textViewColor;
+    private TextView textViewStock;
     private TextView textViewProcesador;
     private TextView textViewRAM;
     private TextView textViewPrecio;
@@ -30,7 +33,7 @@ public class Movil_Dialog extends DialogFragment implements View.OnClickListener
     private ImageButton botonComprar;
 
 
-    private int id_movil;
+    private int id_movil,stock;
     private String precio;
     private String marca, modelo, caracteristicas,procesador,ram;
 
@@ -47,6 +50,7 @@ public class Movil_Dialog extends DialogFragment implements View.OnClickListener
         this.procesador=movil.getProcesador().toString();
         this.ram= movil.getRam().toString();
         this.precio= String.valueOf(movil.getPrecio())+"€";
+        this.stock=movil.getStock();
 
     }
 
@@ -64,6 +68,7 @@ public class Movil_Dialog extends DialogFragment implements View.OnClickListener
     textViewProcesador=(TextView)customDialog.findViewById(R.id.textViewProcesador);
     textViewRAM=(TextView)customDialog.findViewById(R.id.textViewRAM);
     textViewPrecio=(TextView)customDialog.findViewById(R.id.textViewPrecio);
+    textViewStock=(TextView)customDialog.findViewById(R.id.textViewStock);
 
     botonVolver=(ImageButton)customDialog.findViewById(R.id.imageButtonVolver);
     botonComprar=(ImageButton)customDialog.findViewById(R.id.imageButtonComprar);
@@ -75,10 +80,10 @@ public class Movil_Dialog extends DialogFragment implements View.OnClickListener
         textViewMarca.setText(marca);
         textViewModelo.setText(modelo);
         textViewRAM.setText(ram);
-
-
         textViewProcesador.setText(procesador);
         textViewPrecio.setText(precio);
+        textViewStock.setText(Integer.toString(stock));
+
 
     //Seteo el layout en el diálogo
     builder.setView(customDialog);
@@ -98,13 +103,26 @@ public class Movil_Dialog extends DialogFragment implements View.OnClickListener
 
         if (view.getId()==R.id.imageButtonComprar){
 
-            escuchador.onIniciasActividad();
+            if(stock<1){
+
+                Toasty.info(getActivity(),"No queda stock del producto.", Toast.LENGTH_SHORT).show();
+
+            }
+
+            else {
+
+                escuchador.onIniciasActividad();
+                dismiss();
+
+            }
 
         }
 
         else {
+
             //Si se pulsa cancelar el dialogo se cerrará sí o sí sin realizar ninguna acción
             dialogo.dismiss();
+
         }
 
     }

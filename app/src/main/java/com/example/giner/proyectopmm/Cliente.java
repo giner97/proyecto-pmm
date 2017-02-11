@@ -8,33 +8,23 @@ public class Cliente {
 
     //Variables
 
-        private int id_cliente,cp,telefono;
-        private String nombre,apellidos,dni,pais,comunidadAutonoma,provincia,domicilio;
+        private int id_cliente,telefono;
+        private String nombre,apellidos,dni,provincia;
 
     //Constructor
 
     public Cliente(){}
 
-        public Cliente(int id_cliente,String nombre,String apellidos,String dni,int cp, String pais, String comunidadAutonoma, String provincia, String domicilio,int telefono){
+        public Cliente(int id_cliente,String nombre,String apellidos,String dni, String provincia,int telefono){
 
             this.id_cliente=id_cliente;
             this.nombre=nombre;
             this.apellidos=apellidos;
             this.dni=dni;
-            this.cp=cp;
-            this.pais=pais;
-            this.comunidadAutonoma=comunidadAutonoma;
             this.provincia=provincia;
-            this.domicilio=domicilio;
             this.telefono=telefono;
 
         }
-
-    public Cliente(String nombre, String apellidos, String dni, int telefono) {
-
-
-
-    }
 
     //Getters y Setters
 
@@ -54,13 +44,6 @@ public class Cliente {
             this.id_cliente = id_cliente;
         }
 
-        public int getCp() {
-            return cp;
-        }
-
-        public void setCp(int cp) {
-            this.cp = cp;
-        }
 
         public String getDni() {
             return dni;
@@ -78,36 +61,12 @@ public class Cliente {
             this.apellidos = apellidos;
         }
 
-        public String getPais() {
-            return pais;
-        }
-
-        public void setPais(String pais) {
-            this.pais = pais;
-        }
-
-        public String getComunidadAutonoma() {
-            return comunidadAutonoma;
-        }
-
-        public void setComunidadAutonoma(String comunidadAutonoma) {
-            this.comunidadAutonoma = comunidadAutonoma;
-        }
-
         public String getProvincia() {
             return provincia;
         }
 
         public void setProvincia(String provincia) {
             this.provincia = provincia;
-        }
-
-        public String getDomicilio() {
-            return domicilio;
-        }
-
-        public void setDomicilio(String domicilio) {
-            this.domicilio = domicilio;
         }
 
         public int getTelefono() {

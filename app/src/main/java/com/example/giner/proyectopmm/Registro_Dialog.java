@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import es.dmoral.toasty.Toasty;
+
 /**
  * Created by ricardo on 09/02/2017.
  */
@@ -111,14 +113,16 @@ public class Registro_Dialog extends DialogFragment implements View.OnClickListe
                     clienteInsertado.setTelefono(telefono);
                     escuchador.onNuevoCliente(clienteInsertado);
 
-                    Toast.makeText(getActivity(), "Usuario Insertado Correctamente", Toast.LENGTH_SHORT).show();
+                   //Toast.makeText(getActivity(), "Usuario Insertado Correctamente", Toast.LENGTH_SHORT).show();
+                    Toasty.success(getActivity(), "Usuario Insertado Correctamente", Toast.LENGTH_SHORT).show();
+
                     dialogo.dismiss();
 
             }
 
             else{
 
-                Toast.makeText(getActivity(), "Te has dejado algun campo vacio", Toast.LENGTH_SHORT).show();
+                Toasty.warning(getActivity(), "Te has dejado algun campo vacio", Toast.LENGTH_SHORT).show();
 
             }
         }

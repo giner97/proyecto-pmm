@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
@@ -15,22 +16,29 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import es.dmoral.toasty.Toasty;
+
 public class Activity_main extends AppCompatActivity implements FragmentoActivityMain.FragmentoMainListener, TareaRest.TareaRestListener, Movil_Dialog.OnListener{
 
     //URL servidor
 
     private final static String URL_BASE_SERVIDOR = "http://alvaro-ricardo-pmm.hol.es/";
+    public final static String KEY_MOVIL="movil";
 
     //Constantes con el codigo personalizado
-    public final static int CODIGO_INSERCIÓN_CLIENTE = 2;
     private final static int CONSULTA_MOVILES = 0;
     private  final static int REQUEST_CODE=0;
 
     //Creamos las variables
 
     private FragmentoActivityMain fragment;
+    private Moviles movil;
     private Movil_Dialog movil_dialog;
     private FragmentTransaction transaction;
+
+    //ArrayList Moviles
+
+        ArrayList<Moviles>moviles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +65,7 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
         else {
 
             // Mostrar errores
-            Toast.makeText(this,"No hay conexión de red.",Toast.LENGTH_SHORT).show();
+            Toasty.error(this,"No hay conexión de red.",Toast.LENGTH_SHORT).show();
 
         }
 
@@ -73,7 +81,7 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
 
             if (codigoOperacion == 0) {
 
-                ArrayList<Moviles> moviles = procesarListaMoviles(respuestaJson);
+                moviles = procesarListaMoviles(respuestaJson);
                 fragment.pasaMoviles(moviles);
 
             }
@@ -98,7 +106,9 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
         catch (Exception e){
 
             //Publico un Toast en la activity que nos llamó
-            Toast.makeText(Activity_main.this, e.getMessage(), Toast.LENGTH_LONG).show();
+           // Toast.makeText(Activity_main.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Toasty.error(Activity_main.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+
 
             return null;
 
@@ -119,6 +129,8 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
     @Override
     public void onMuestraMovil(Moviles movil) {
 
+        this.movil=movil;
+
         //Creamos e instanciamos el Custom Dialog
         transaction = getFragmentManager().beginTransaction();
         movil_dialog = new Movil_Dialog(movil);
@@ -131,16 +143,16 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
     @Override
     public void onIniciasActividad() {
 
-
-        Intent intent = new Intent(this,Compra_Activity.class);
-
-        startActivityForResult(intent, REQUEST_CODE);
-
+        Intent intent = new Intent(this,Activity_compra.class);
+        intent.putExtra(KEY_MOVIL, movil.getId_movil());
+        startActivityForResult(intent,REQUEST_CODE);
 
     }
 
-    private void startActivityForResult(Intent intent) {
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode,resultCode,data);
 
 
 

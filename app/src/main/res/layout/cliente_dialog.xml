@@ -35,7 +35,7 @@
                 android:layout_marginRight="10dp">
 
                 <TextView
-                    android:text="Nombre:"
+                    android:text="@string/nombreClienteDialog"
                     android:textSize="18dp"
                     android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"
@@ -55,7 +55,7 @@
                 android:layout_height="match_parent" >
 
                 <TextView
-                    android:text="Apellidos:"
+                    android:text="@string/apellidosClienteDialog"
                     android:textSize="18dp"
                     android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"
@@ -76,7 +76,7 @@
                 android:layout_height="match_parent" >
 
                 <TextView
-                    android:text="DNI:"
+                    android:text="@string/dniClienteDialog"
                     android:textSize="18dp"
                     android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"
@@ -97,7 +97,7 @@
                 >
 
                 <TextView
-                    android:text="Provincia:"
+                    android:text="@string/provinciaClienteDialog"
                     android:textSize="18dp"
                     android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"
@@ -118,7 +118,7 @@
                 android:layout_height="match_parent" >
 
                 <TextView
-                    android:text="Telefono:"
+                    android:text="@string/telefonoClienteDialog"
                     android:textSize="18dp"
                     android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"

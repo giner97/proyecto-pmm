@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import es.dmoral.toasty.Toasty;
+
 public class ModificaCliente_Dialog extends DialogFragment implements View.OnClickListener {
 
     private EditText editNombre;
@@ -115,7 +117,9 @@ public class ModificaCliente_Dialog extends DialogFragment implements View.OnCli
 
                 else{
 
-                    Toast.makeText(getActivity(), "Se han introducido los mismos datos.", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getActivity(), "Se han introducido los mismos datos.", Toast.LENGTH_SHORT).show();
+                    Toasty.info(getActivity(), "Se han introducido los mismos datos.", Toast.LENGTH_SHORT).show();
+
 
                 }
 
@@ -123,7 +127,9 @@ public class ModificaCliente_Dialog extends DialogFragment implements View.OnCli
 
             else{
 
-                Toast.makeText(getActivity(), "Te has dejado algun campo vacio.", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "Te has dejado algun campo vacio.", Toast.LENGTH_SHORT).show();
+                Toasty.warning(getActivity(), "Te has dejado algun campo vacio.", Toast.LENGTH_SHORT).show();
+
 
             }
 

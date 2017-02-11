@@ -11,7 +11,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity_main">
+        <activity
+            android:name=".Activity_main"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,10 +21,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Compra_Activity"
-            android:label="@string/title_activity_compra_"
+            android:name=".Activity_compra"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activity_consultar" />
+        <activity
+            android:name=".Activity_consultar"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

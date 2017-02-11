@@ -12,7 +12,7 @@
         android:layout_centerHorizontal="true">
 
         <TextView
-            android:text="Caracteristicas del movil"
+            android:text="@string/caracteristicasMovilDialog"
             android:textSize="25dp"
             android:textColor="@color/negro"
             android:textAlignment="center"
@@ -34,7 +34,7 @@
                 android:layout_marginRight="10dp">
 
                 <TextView
-                    android:text="Marca:"
+                    android:text="@string/marcaMovilDialog"
                     android:textSize="18dp"
                     android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
                 android:layout_height="match_parent" >
 
                 <TextView
-                    android:text="Modelo:"
+                    android:text="@string/modeloMovilDialog"
                     android:textSize="18dp"
                     android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"
@@ -76,7 +76,7 @@
                 >
 
                 <TextView
-                    android:text="Procesador:"
+                    android:text="@string/procesadorMovilDialog"
                     android:textSize="18dp"
                     android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"
@@ -97,7 +97,7 @@
                 android:layout_height="match_parent" >
 
                 <TextView
-                    android:text="RAM:"
+                    android:text="@string/ramMovilDialog"
                     android:textSize="18dp"
                     android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"
@@ -117,7 +117,7 @@
                 android:layout_height="match_parent" >
 
                 <TextView
-                    android:text="Precio:"
+                    android:text="@string/precioMovilDialog"
                     android:textSize="18dp"
                     android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"
@@ -130,6 +130,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textViewPrecio" />
+
+
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:text="@string/stockMovilDialog"
+                    android:textSize="18dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView7" />
+
+                <TextView
+                    android:text="TextView"
+                    android:textSize="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewStock" />
 
 
             </TableRow>
