@@ -17,7 +17,6 @@ public class Moviles{
         private int precio;
         private int id_movil;
         private int stock;
-        private Moviles movil;
 
     //Constructor
 

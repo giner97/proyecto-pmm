@@ -100,6 +100,7 @@ public class Registro_Dialog extends DialogFragment implements View.OnClickListe
                 dni=editTextDNI.getText().toString();
                 provincia=editTextProvincia.getText().toString();
 
+
             if((!nombre.isEmpty())&&(!apellidos.isEmpty())&&(!dni.isEmpty())&&(!provincia.isEmpty())&&(!editTextTelefono.getText().toString().isEmpty())){
 
                 telefono=Integer.valueOf(editTextTelefono.getText().toString());
@@ -113,9 +114,6 @@ public class Registro_Dialog extends DialogFragment implements View.OnClickListe
                     clienteInsertado.setTelefono(telefono);
                     escuchador.onNuevoCliente(clienteInsertado);
 
-                   //Toast.makeText(getActivity(), "Usuario Insertado Correctamente", Toast.LENGTH_SHORT).show();
-                    Toasty.success(getActivity(), "Usuario Insertado Correctamente", Toast.LENGTH_SHORT).show();
-
                     dialogo.dismiss();
 
             }
@@ -125,6 +123,7 @@ public class Registro_Dialog extends DialogFragment implements View.OnClickListe
                 Toasty.warning(getActivity(), "Te has dejado algun campo vacio", Toast.LENGTH_SHORT).show();
 
             }
+
         }
 
         else  if(view.getId()==R.id.imageButtonVolver){

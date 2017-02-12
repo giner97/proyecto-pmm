@@ -48,10 +48,7 @@ public class Activity_compra extends AppCompatActivity implements Registro_Dialo
 
         private final static int CONSULTA_CLIENTE = 0;
         private final static int INSERCION_CLIENTE = 1;
-        private final static int INSERCION_COMPRA= 2;
-        private final static int MODIFICA_MOVIL= 3;
-        private final static int CONSULTA_MOVIL_SELECCIONADO =4;
-        private final static int CONSULTA_CLIENTE_ACTUALIZA = 5;
+        private final static int INSERCION_COMPRA= 2;;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,7 +119,6 @@ public class Activity_compra extends AppCompatActivity implements Registro_Dialo
         imei_dialogo.show(transactionImei,null);
         imei_dialogo.setCancelable(false);
 
-
     }
 
     @Override
@@ -132,12 +128,18 @@ public class Activity_compra extends AppCompatActivity implements Registro_Dialo
 
             ArrayList<Cliente>clientesProcesar = procesarListaClientes(respuestaJson);
             listaClientes=clientesProcesar;
-            generaListView();
+
+            if(arrayAdapterCliente==null){
+
+                generaListView();
+
+            }
 
         }
 
         else if(codigoOperacion==1){
 
+            Toasty.success(this, "Usuario insertado correctamente", Toast.LENGTH_SHORT).show();
             actualizaArrayAdapter(clienteCreado);
 
         }
@@ -145,38 +147,9 @@ public class Activity_compra extends AppCompatActivity implements Registro_Dialo
         else if(codigoOperacion==2){
 
             Toasty.success(this, "Compra realizada con éxito.", Toast.LENGTH_SHORT).show();
-
-            //--------------------FASE DE PRUEBAS----------------------
-
-            TareaRest tareaBuscaMovilSeleccionado = new TareaRest(this,CONSULTA_MOVIL_SELECCIONADO, "GET",URL_BASE_SERVIDOR+"/movil/"+idMovilseleccionado,null,this);
-            tareaBuscaMovilSeleccionado.execute();
-
-        }
-
-        else if(codigoOperacion==4){
-
-            Moviles objetoRecuperado = procesarMoviles(respuestaJson);
-            objetoRecuperado.setStock(objetoRecuperado.getStock()-1);
-
-            //Creamos un objeto GSON
-
-            Gson gson = new Gson();
-
-            //Convertimos un objeto compra en una cadena JSON
-
-            String parametroJson = gson.toJson(objetoRecuperado);
-
-            TareaRest tareaModifica = new TareaRest(this,MODIFICA_MOVIL,"PUT",URL_BASE_SERVIDOR+"/movil/"+idMovilseleccionado,parametroJson,this);
-            tareaModifica.execute();
-
-        }
-
-        else if(codigoOperacion==3){
-
             finish();
 
         }
-
 
     }
 
@@ -254,11 +227,17 @@ public class Activity_compra extends AppCompatActivity implements Registro_Dialo
     public void onNuevoCliente(Cliente cliente) {
 
         //Guardamos el cliente
-        this.clienteCreado=cliente;
+
+            this.clienteCreado=cliente;
+
         //Creamos un objeto GSON
-        Gson gson = new Gson();
-        //Convertimos un objeto Alumno en una cadena JSON
-        String parametroJson = gson.toJson(cliente);
+
+            Gson gson = new Gson();
+
+        //Convertimos un objeto cliente en una cadena JSON
+
+            String parametroJson = gson.toJson(cliente);
+
         TareaRest tarea = new TareaRest(this,INSERCION_CLIENTE,"POST",URL_BASE_SERVIDOR+"/cliente",parametroJson,this);
         tarea.execute();
 
@@ -266,7 +245,8 @@ public class Activity_compra extends AppCompatActivity implements Registro_Dialo
 
     public void actualizaArrayAdapter(Cliente cliente){
 
-        listaClientes.add(cliente);
+        TareaRest tarea = new TareaRest(this,CONSULTA_CLIENTE,"GET",URL_BASE_SERVIDOR+"/cliente",null,this);
+        tarea.execute();
         arrayAdapterCliente.notifyDataSetChanged();
 
     }

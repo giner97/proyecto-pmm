@@ -26,4 +26,9 @@
     <string name="modificaClienteTelefono">Telefono:</string>
     <string name="buscarCliente">Buscar cliente</string>
     <string name="stockMovilDialog">Stock:</string>
+    <string name="modificar_moviles_dialog">Modificar Moviles</string>
+    <string name="marcaDialog">Marca:</string>
+    <string name="modeloDialog">Modelo:</string>
+    <string name="procesadorDialog">Procesador:</string>
+    <string name="ramDialog">RAM:</string>
 </resources>

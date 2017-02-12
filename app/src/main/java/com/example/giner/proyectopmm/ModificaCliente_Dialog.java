@@ -34,6 +34,8 @@ public class ModificaCliente_Dialog extends DialogFragment implements View.OnCli
         private int telf;
         private Cliente clienteAModificar;
 
+    //Constructor del dialogo para pasarle el objeto
+
     public ModificaCliente_Dialog(Cliente cliente){
 
         this.clienteAModificar=cliente;
@@ -64,11 +66,10 @@ public class ModificaCliente_Dialog extends DialogFragment implements View.OnCli
             editDNI=(EditText)customDialog.findViewById(R.id.editTextDNIModificado);
             editProvincia=(EditText)customDialog.findViewById(R.id.editTextProvinciaModificada);
             editTelf=(EditText)customDialog.findViewById(R.id.editTextTelefonoModificado);
-
-        //Escuchadores de los botones
-
             botonVolver = (ImageButton)customDialog.findViewById(R.id.imageButtonVolverModifica);
             botonOK = (ImageButton)customDialog.findViewById(R.id.imageButtonModifica);
+
+        //Escuchadores de los botones
 
             botonVolver.setOnClickListener(this);
             botonOK.setOnClickListener(this);
@@ -117,9 +118,7 @@ public class ModificaCliente_Dialog extends DialogFragment implements View.OnCli
 
                 else{
 
-                    //Toast.makeText(getActivity(), "Se han introducido los mismos datos.", Toast.LENGTH_SHORT).show();
                     Toasty.info(getActivity(), "Se han introducido los mismos datos.", Toast.LENGTH_SHORT).show();
-
 
                 }
 
@@ -127,7 +126,6 @@ public class ModificaCliente_Dialog extends DialogFragment implements View.OnCli
 
             else{
 
-                //Toast.makeText(getActivity(), "Te has dejado algun campo vacio.", Toast.LENGTH_SHORT).show();
                 Toasty.warning(getActivity(), "Te has dejado algun campo vacio.", Toast.LENGTH_SHORT).show();
 
 

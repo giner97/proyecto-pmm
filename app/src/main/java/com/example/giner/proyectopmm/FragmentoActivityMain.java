@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -14,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -21,12 +23,13 @@ import java.util.ArrayList;
 
 import es.dmoral.toasty.Toasty;
 
-public class FragmentoActivityMain extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class FragmentoActivityMain extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener, PopupMenu.OnMenuItemClickListener,AdapterView.OnItemLongClickListener {
 
     //Widgets del fragmento
 
         private FragmentoMainListener escuchador;
         private ImageButton boton_Consultar;
+        private ImageButton boton_Insertar;
         private ListView listaMoviles;
         private ArrayList<Moviles>arrayMoviles;
         private Moviles movil;
@@ -56,15 +59,18 @@ public class FragmentoActivityMain extends Fragment implements View.OnClickListe
         //Instanciamos los objetos
 
             boton_Consultar = (ImageButton)v.findViewById(R.id.botonConsultar);
+            boton_Insertar = (ImageButton)v.findViewById(R.id.botonInsertarClientes);
             listaMoviles = (ListView)v.findViewById(R.id.listViewMoviles);
 
         //ActionListener del botonConsultar
 
             boton_Consultar.setOnClickListener(this);
+            boton_Insertar.setOnClickListener(this);
 
         //Escuchador del listViewMoviles
 
             listaMoviles.setOnItemClickListener(this);
+            listaMoviles.setOnItemLongClickListener(this);
 
         return v;
     }
@@ -79,6 +85,12 @@ public class FragmentoActivityMain extends Fragment implements View.OnClickListe
 
         }
 
+        else if(view.getId()==R.id.botonInsertarClientes){
+
+            escuchador.onInsertarMovil();
+
+        }
+
     }
 
     @Override
@@ -87,15 +99,60 @@ public class FragmentoActivityMain extends Fragment implements View.OnClickListe
         movil=(Moviles)adapterView.getItemAtPosition(i);
         escuchador.onMuestraMovil(movil);
 
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+
+        switch (menuItem.getItemId()){
+
+            case R.id.modificar:
+
+                escuchador.onModificaMovil(movil);
+                return true;
+
+            case R.id.eliminar:
+
+                escuchador.onEliminaMovil(movil);
+                return true;
+
+            default:
+
+                return false;
+
+        }
 
     }
 
+    @Override
+    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+        //Recupero el objeto Movil seleccionado
+
+            movil=(Moviles)adapterView.getItemAtPosition(i);
+
+        //Popup  menu
+
+        PopupMenu popup = new PopupMenu(getActivity(), listaMoviles);
+
+        popup.getMenuInflater().inflate(R.menu.popup_menu_moviles, popup.getMenu());
+
+        popup.setOnMenuItemClickListener(this);
+
+        popup.show();
+
+        return true;
+
+    }
 
 
     public interface FragmentoMainListener{
 
         void onConsultar();
         void onMuestraMovil(Moviles movil);
+        void onModificaMovil(Moviles movil);
+        void onEliminaMovil(Moviles movil);
+        void onInsertarMovil();
 
     }
 
@@ -125,6 +182,13 @@ public class FragmentoActivityMain extends Fragment implements View.OnClickListe
 
     public void actualizaFragmentoArrayAdapterMoviles(){
 
+        arrayAdapter.notifyDataSetChanged();
+
+    }
+
+    public void actualizaListaMovilesBorrar(Moviles movil){
+
+        arrayMoviles.remove(movil);
         arrayAdapter.notifyDataSetChanged();
 
     }

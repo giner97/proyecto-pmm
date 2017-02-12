@@ -39,7 +39,7 @@ $app->get('/',function()use ($app){
             
             //Preparamos la consulta
             
-                $consulta = $db->prepare("select id_movil, marca,modelo,procesador,ram,almacenamiento, stock,sistemaOperativo, precio from Movil");
+                $consulta = $db->prepare("select id_movil, marca,modelo,procesador,ram,precio,stock from Movil where activo=1");
                 
             //Ejecutamos la consulta
                 
@@ -87,7 +87,7 @@ $app->get('/',function()use ($app){
             
             //Preparamos la consulta
             
-                $consulta = $db->prepare("select id_cliente,nombre,apellidos,dni,cp,pais,comunidadAutonoma,provincia,domicilio,telefono from Cliente where activo=1");
+                $consulta = $db->prepare("select id_cliente,nombre,apellidos,dni,provincia,telefono from Cliente where activo=1");
                 
             //Ejecutamos la consulta
                 
@@ -272,7 +272,202 @@ $app->get('/',function()use ($app){
             }
             
            });
+		   
+	//Insercion de Compras
+        
+        $app->post('/compra/',function()use($app,$db){
+            
+            try{
+               
+            //Obtenemos el contenido de la peticion 
+               
+                $cuerpoPeticion = $app->request()->getBody();
+                $compra = json_decode($cuerpoPeticion);
+                   
+            //Obtengo todos los atributos del objeto Compra
+                   
+                $id_cliente=$compra->id_cliente;
+                $id_movil=$compra->id_movil;
+                $imei=$compra->imei;
+                
+            //Preparamos la consulta
+                
+                $consulta = $db->prepare("Insert into Compra(id_cliente,id_movil,imei)values('$id_cliente','$id_movil','$imei');");
+            
+            //Ejecutamos la consulta
+                    
+                $resultado = $consulta->execute();    
+            
+                if ($resultado){
+
+                    if ($consulta->rowCount()==1){
+                        echo "Cliente añadido";
+                    }
+                    else {
+                        //No existía el cliente
+                            $app->response()->setStatus(404);
+                            echo "Error en la insercion";
+                    }
+
+                }
+
+                else {
+                    //En caso de error Mysql
+                        throw new PDOException($consulta->errorInfo()[2]);
+                }
+
+            } catch (PDOException $e) {
+                $app->response()->setStatus(404);
+                //Si no hay resultados getmessage() devolverá una cadena vacía
+                echo $e->getMessage();
+            }
+            
+           });
+		   
+	//Borrado de moviles
     
+        $app->delete('/movil/:id',function($id)use($app,$db){
+            
+            try{
+                
+                //Preparamos la consulta
+                
+                    $consulta = $db->prepare("update Movil set activo = 0 where id_movil= $id");
+                    
+                //Ejecutamos la consulta
+                
+                    $resultado = $consulta->execute();
+                    
+                //Si ha eliminado la fila lo mostramos
+                    
+                if ($resultado){
+                    if ($consulta->rowCount()==1){
+                         echo "Movil borrado.";
+                    }
+                    else {
+                        //No existe el cliente
+                         $app->response()->setStatus(404);
+                          echo "No se ha podido eliminar el movil.";
+                    }
+           
+                }
+                else {
+                    //En caso de error Mysql
+                    throw new PDOException($consulta->errorInfo()[2]);
+                }
+                
+            } catch (Exception $ex) {
+
+                $app->response()->setStatus(404);
+                echo $e->getMessage();
+                
+            }
+            
+        });	   
+
+    //Modifica moviles
+        
+        $app->put('/movil/:id',function($id)use($app,$db){
+            
+            try{  
+            
+                //Obtenemos el contenido de la peticion
+
+                    $cuerpoPeticion = $app->request()->getBody();
+                    $movil = json_decode($cuerpoPeticion);
+
+                //Obetenemos los atributos del objeto cliente
+				
+					$stock=$movil->stock;
+                    $precio=$movil->precio;
+                    
+                //Preparamos la consulta
+                    
+                    $consulta = $db->prepare("update Movil set stock='$stock', precio='$precio' where id_movil=$id");
+                    
+                //Ejecutamos la consulta
+                    
+                    $resultado = $consulta->execute();
+            
+                    if ($resultado){
+                        
+                        if ($consulta->rowCount()==1){
+                             echo "Movil modificado";
+                        }
+                        else {
+                            //No existía el cliente
+                             $app->response()->setStatus(404);
+                              echo "No existe el movil especificado";
+                        }
+
+                    }
+                    else {
+                        //En caso de error Mysql
+                        throw new PDOException($consulta->errorInfo()[2]);
+                    }
+
+            } catch (PDOException $e) {
+                $app->response()->setStatus(404);
+                //Si no hay resultados getmessage() devolverá una cadena vacía
+                echo $e->getMessage();
+            }    
+             
+        });
+		
+		//Insercion de moviles
+        
+        $app->post('/movil/',function()use($app,$db){
+            
+            try{
+               
+            //Obtenemos el contenido de la peticion 
+               
+                $cuerpoPeticion = $app->request()->getBody();
+                $movil = json_decode($cuerpoPeticion);
+                   
+            //Obtengo todos los atributos del objeto Compra
+                   
+                $marca=$movil->marca;
+                $modelo=$movil->modelo;
+                $procesador=$movil->procesador;
+				$stock=$movil->stock;
+                $ram=$movil->ram;
+                $precio=$movil->precio;
+                
+            //Preparamos la consulta
+                
+                $consulta = $db->prepare("Insert into Movil(marca,modelo,procesador,ram,precio,stock,activo)values('$marca','$modelo','$procesador','$ram','$precio','$stock',1);");
+            
+            //Ejecutamos la consulta
+                    
+                $resultado = $consulta->execute();    
+            
+                if ($resultado){
+
+                    if ($consulta->rowCount()==1){
+                        echo "Movil añadido";
+                    }
+                    else {
+                        //No existía el cliente
+                            $app->response()->setStatus(404);
+                            echo "Error en la insercion";
+                    }
+
+                }
+
+                else {
+                    //En caso de error Mysql
+                        throw new PDOException($consulta->errorInfo()[2]);
+                }
+
+            } catch (PDOException $e) {
+                $app->response()->setStatus(404);
+                //Si no hay resultados getmessage() devolverá una cadena vacía
+                echo $e->getMessage();
+            }
+            
+           });
+	
     $app->run();
     
    

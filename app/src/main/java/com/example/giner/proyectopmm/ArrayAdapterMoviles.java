@@ -50,6 +50,5 @@ public class ArrayAdapterMoviles extends ArrayAdapter<Moviles>{
 
             return convertView;
 
-
     }
 }
