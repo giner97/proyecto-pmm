@@ -203,6 +203,7 @@ public class Fragmento_consultar extends Fragment implements  AdapterView.OnItem
 
             listaClientes.remove(cliente);
             arrayAdapterCliente.notifyDataSetChanged();
+            Toasty.success(getActivity(), "Usuario eliminado correctamente.", Toast.LENGTH_SHORT).show();
 
         }
 

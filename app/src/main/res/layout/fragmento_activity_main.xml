@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/boton_insertar_moviles"
-            android:id="@+id/botonInsertarClientes"
+            android:id="@+id/botonInsertarMoviles"
             android:layout_weight="1"
             android:padding="5dp"
             android:background="@android:color/transparent"/>

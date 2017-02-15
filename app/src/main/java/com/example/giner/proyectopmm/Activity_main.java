@@ -103,6 +103,7 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
 
             else if(codigoOperacion == 2){
 
+                Toasty.success(this,"Móvil eliminado correctamente",Toast.LENGTH_SHORT).show();
                 fragment.actualizaListaMovilesBorrar(movil);
 
             }
@@ -149,10 +150,8 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
     @Override
     public void onConsultar() {
 
-
         Intent intencion = new Intent(this,Activity_consultar.class);
         startActivity(intencion);
-
 
     }
 
@@ -188,7 +187,7 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
 
         this.movil=movil;
 
-        String movilId = Integer.toBinaryString(movil.getId_movil());
+        String movilId = Integer.toString(movil.getId_movil());
         TareaRest tareaElimina = new TareaRest(this,ELIMINA_MOVIL,"DELETE",URL_BASE_SERVIDOR+"/movil/"+movilId,null,this);
         tareaElimina.execute();
 
@@ -219,7 +218,7 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode,resultCode,data);
 
-        //Le restamos 1 unidad al stock
+       //Le restamos 1 unidad al stock
 
             movil.setStock(movil.getStock()-1);
 
@@ -255,6 +254,7 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
 
         TareaRest tareaModifica = new TareaRest(this,MODIFICA_MOVIL,"PUT",URL_BASE_SERVIDOR+"/movil/"+movilID,parametroJson,this);
         tareaModifica.execute();
+        Toasty.success(this,"Móvil modificado correctamente",Toast.LENGTH_SHORT).show();
 
     }
 

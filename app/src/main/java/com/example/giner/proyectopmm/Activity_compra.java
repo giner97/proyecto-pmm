@@ -48,7 +48,8 @@ public class Activity_compra extends AppCompatActivity implements Registro_Dialo
 
         private final static int CONSULTA_CLIENTE = 0;
         private final static int INSERCION_CLIENTE = 1;
-        private final static int INSERCION_COMPRA= 2;;
+        private final static int INSERCION_COMPRA= 2;
+        private final static int ACTUALIZA_CLIENTES= 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +97,6 @@ public class Activity_compra extends AppCompatActivity implements Registro_Dialo
     @Override
     public void onClick(View view) {
 
-
         if(view.getId()==R.id.addUser){
 
             //Creamos e instanciamos el Custom Dialog
@@ -127,7 +127,7 @@ public class Activity_compra extends AppCompatActivity implements Registro_Dialo
         if(codigoOperacion==0){
 
             ArrayList<Cliente>clientesProcesar = procesarListaClientes(respuestaJson);
-            listaClientes=clientesProcesar;
+            this.listaClientes=clientesProcesar;
 
             if(arrayAdapterCliente==null){
 
@@ -140,7 +140,7 @@ public class Activity_compra extends AppCompatActivity implements Registro_Dialo
         else if(codigoOperacion==1){
 
             Toasty.success(this, "Usuario insertado correctamente", Toast.LENGTH_SHORT).show();
-            actualizaArrayAdapter(clienteCreado);
+            actualizaArrayAdapter();
 
         }
 
@@ -148,6 +148,17 @@ public class Activity_compra extends AppCompatActivity implements Registro_Dialo
 
             Toasty.success(this, "Compra realizada con éxito.", Toast.LENGTH_SHORT).show();
             finish();
+
+        }
+
+        else if(codigoOperacion==3){
+
+            listaClientes=procesarListaClientes(respuestaJson);
+
+            arrayAdapterCliente.clear();
+            arrayAdapterCliente.addAll(listaClientes);
+
+            arrayAdapterCliente.notifyDataSetChanged();
 
         }
 
@@ -213,7 +224,6 @@ public class Activity_compra extends AppCompatActivity implements Registro_Dialo
 
             else{
 
-                //Toast.makeText(this,"Ha ocurrido un error",Toast.LENGTH_LONG).show();
                 Toasty.error(this, "Ha ocurrido un error", Toast.LENGTH_LONG).show();
 
             }
@@ -243,11 +253,10 @@ public class Activity_compra extends AppCompatActivity implements Registro_Dialo
 
     }
 
-    public void actualizaArrayAdapter(Cliente cliente){
+    public void actualizaArrayAdapter(){
 
-        TareaRest tarea = new TareaRest(this,CONSULTA_CLIENTE,"GET",URL_BASE_SERVIDOR+"/cliente",null,this);
+        TareaRest tarea = new TareaRest(this,ACTUALIZA_CLIENTES,"GET",URL_BASE_SERVIDOR+"/cliente",null,this);
         tarea.execute();
-        arrayAdapterCliente.notifyDataSetChanged();
 
     }
 

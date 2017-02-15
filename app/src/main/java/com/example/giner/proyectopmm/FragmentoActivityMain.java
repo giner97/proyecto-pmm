@@ -1,27 +1,18 @@
 package com.example.giner.proyectopmm;
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.PopupMenu;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-
-import es.dmoral.toasty.Toasty;
 
 public class FragmentoActivityMain extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener, PopupMenu.OnMenuItemClickListener,AdapterView.OnItemLongClickListener {
 
@@ -59,7 +50,7 @@ public class FragmentoActivityMain extends Fragment implements View.OnClickListe
         //Instanciamos los objetos
 
             boton_Consultar = (ImageButton)v.findViewById(R.id.botonConsultar);
-            boton_Insertar = (ImageButton)v.findViewById(R.id.botonInsertarClientes);
+            boton_Insertar = (ImageButton)v.findViewById(R.id.botonInsertarMoviles);
             listaMoviles = (ListView)v.findViewById(R.id.listViewMoviles);
 
         //ActionListener del botonConsultar
@@ -85,7 +76,7 @@ public class FragmentoActivityMain extends Fragment implements View.OnClickListe
 
         }
 
-        else if(view.getId()==R.id.botonInsertarClientes){
+        else if(view.getId()==R.id.botonInsertarMoviles){
 
             escuchador.onInsertarMovil();
 
