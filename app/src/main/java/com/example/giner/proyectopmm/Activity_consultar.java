@@ -16,12 +16,16 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class Activity_consultar extends AppCompatActivity implements View.OnClickListener, Fragmento_consultar.FragmentoConsultarListener,TareaRest.TareaRestListener, ModificaCliente_Dialog.OnModificaListener{
+import es.dmoral.toasty.Toasty;
+
+public class Activity_consultar extends AppCompatActivity implements View.OnClickListener, Cliente_Dialog.OnClienteDialogListener,Fragmento_consultar.FragmentoConsultarListener,TareaRest.TareaRestListener, ModificaCliente_Dialog.OnModificaListener{
 
     private Cliente_Dialog clienteDialogo;
     private ModificaCliente_Dialog modificaDialogo;
+    private Compras_Dialog comprasDialog;
     private FragmentTransaction transaction;
     private FragmentTransaction transaction1;
+    private FragmentTransaction transaction2;
 
 
     //URL servidor
@@ -33,6 +37,7 @@ public class Activity_consultar extends AppCompatActivity implements View.OnClic
         private final static int CONSULTA_CLIENTES = 0;
         private final static int ELIMINA_CLIENTE = 1;
         private final static int MODIFICA_CLIENTE = 2;
+        private final static int CONSULTA_COMPRAS =3;
 
     //Creamos las variables
 
@@ -80,6 +85,7 @@ public class Activity_consultar extends AppCompatActivity implements View.OnClic
         //Creamos e instanciamos el Custom Dialog
         transaction = getFragmentManager().beginTransaction();
         clienteDialogo = new Cliente_Dialog(cliente);
+        clienteDialogo.setOnClienteDialogListener(this);
         clienteDialogo.show(transaction,null);
         clienteDialogo.setCancelable(false);
 
@@ -132,6 +138,19 @@ public class Activity_consultar extends AppCompatActivity implements View.OnClic
 
             }
 
+            else if(codigoOperacion==3){
+
+                ArrayList<Moviles>movilesComprados = procesarListaMoviles(respuestaJson);
+
+                //Creamos e instanciamos el dialogo
+
+                transaction2 = getFragmentManager().beginTransaction();
+                comprasDialog=new Compras_Dialog(movilesComprados);
+                comprasDialog.show(transaction2,null);
+                comprasDialog.setCancelable(false);
+
+            }
+
         }
 
     }
@@ -159,6 +178,30 @@ public class Activity_consultar extends AppCompatActivity implements View.OnClic
 
     }
 
+    //Convierte un objeto JSON en un arrayList de Moviles
+    private ArrayList<Moviles> procesarListaMoviles (String objetoJSON){
+
+        Gson gson = new Gson();
+
+        try {
+
+            Type tipoLista = new TypeToken<ArrayList<Moviles>>(){}.getType();
+            ArrayList<Moviles> moviles = gson.fromJson(objetoJSON,tipoLista);
+            return moviles;
+
+        }
+
+        catch (Exception e){
+
+            //Publico un Toast en la activity que nos llamó
+            Toasty.info(Activity_consultar.this,"Este usuario no ha realizado ninguna compra",Toast.LENGTH_SHORT).show();
+
+            return null;
+
+        }
+
+    }
+
 
     @Override
     public void modificaCliente(Cliente cliente) {
@@ -177,6 +220,14 @@ public class Activity_consultar extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View view) {
+
+    }
+
+    @Override
+    public void abrirDialogCompras(Cliente cliente) {
+
+        TareaRest tareaModifica = new TareaRest(this,CONSULTA_COMPRAS,"GET",URL_BASE_SERVIDOR+"/consultamovil/"+cliente.getId_cliente(),null,this);
+        tareaModifica.execute();
 
     }
 }

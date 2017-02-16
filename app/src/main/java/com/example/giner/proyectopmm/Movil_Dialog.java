@@ -135,8 +135,6 @@ public class Movil_Dialog extends DialogFragment implements View.OnClickListener
     }
 
 
-
-    //Construyo una interface que defina la callback onLogin()
     public interface OnListener{
 
         void onIniciasActividad ();

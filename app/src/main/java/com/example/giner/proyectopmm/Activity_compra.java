@@ -147,6 +147,7 @@ public class Activity_compra extends AppCompatActivity implements Registro_Dialo
         else if(codigoOperacion==2){
 
             Toasty.success(this, "Compra realizada con éxito.", Toast.LENGTH_SHORT).show();
+            setResult(RESULT_OK);
             finish();
 
         }

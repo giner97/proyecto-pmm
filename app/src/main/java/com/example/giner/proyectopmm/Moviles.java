@@ -96,4 +96,12 @@ public class Moviles{
             this.stock = stock;
         }
 
+    @Override
+    public String toString() {
+
+        String resultado = this.marca+" "+this.modelo;
+        return resultado;
+
+    }
+
 }

@@ -8,10 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
-/**
- * Created by dam2 on 06/02/2017.
- */
+import es.dmoral.toasty.Toasty;
+
 
 public class Cliente_Dialog extends DialogFragment implements View.OnClickListener {
 
@@ -20,9 +20,10 @@ public class Cliente_Dialog extends DialogFragment implements View.OnClickListen
     private TextView textViewDNI;
     private TextView textViewProvincia;
     private TextView textViewTelefono;
-    private TextView textViewCompras;
     private ImageButton botonVolver;
-    private ImageButton botonComprar;
+    private ImageButton botonVerCompras;
+    private OnClienteDialogListener escuchador;
+    private Cliente cliente;
 
     private AlertDialog dialogo;
 
@@ -36,6 +37,7 @@ public class Cliente_Dialog extends DialogFragment implements View.OnClickListen
 
     public Cliente_Dialog(Cliente cliente){
 
+        this.cliente=cliente;
         this.nombre=cliente.getNombre();
         this.apellidos=cliente.getApellidos();
         this.dni=cliente.getDni();
@@ -60,8 +62,9 @@ public class Cliente_Dialog extends DialogFragment implements View.OnClickListen
         textViewDNI = (TextView) customDialog.findViewById(R.id.textViewDNI);
         textViewProvincia = (TextView) customDialog.findViewById(R.id.textViewProvincia);
         textViewTelefono = (TextView) customDialog.findViewById(R.id.textViewTelefono);
-
+        botonVerCompras = (ImageButton)customDialog.findViewById(R.id.imageButtonVerCompras);
         botonVolver = (ImageButton) customDialog.findViewById(R.id.imageButtonVolver);
+        botonVerCompras.setOnClickListener(this);
         botonVolver.setOnClickListener(this);
 
         //Mostramos los datos del objeto
@@ -88,7 +91,29 @@ public class Cliente_Dialog extends DialogFragment implements View.OnClickListen
     @Override
     public void onClick(View view) {
 
-        dialogo.dismiss();
+        if(view.getId()==R.id.imageButtonVerCompras){
+
+            escuchador.abrirDialogCompras(cliente);
+
+        }
+
+        else if(view.getId()==R.id.imageButtonVolver) {
+
+            dialogo.dismiss();
+
+        }
+
+    }
+
+    public void setOnClienteDialogListener(Cliente_Dialog.OnClienteDialogListener listener){
+        this.escuchador = listener;
+    }
+
+
+
+    public interface OnClienteDialogListener{
+
+        void abrirDialogCompras (Cliente cliente);
 
     }
 

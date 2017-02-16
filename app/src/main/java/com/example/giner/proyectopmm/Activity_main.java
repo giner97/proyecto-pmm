@@ -1,5 +1,6 @@
 package com.example.giner.proyectopmm;
 
+import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
@@ -137,7 +138,6 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
         catch (Exception e){
 
             //Publico un Toast en la activity que nos llamó
-           // Toast.makeText(Activity_main.this, e.getMessage(), Toast.LENGTH_LONG).show();
             Toasty.error(Activity_main.this,e.getMessage(),Toast.LENGTH_SHORT).show();
 
 
@@ -218,24 +218,32 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode,resultCode,data);
 
-       //Le restamos 1 unidad al stock
+        if(resultCode== Activity.RESULT_OK) {
 
-            movil.setStock(movil.getStock()-1);
+            if(requestCode==Activity_main.REQUEST_CODE) {
 
-        //Creamos un objeto GSON
+                //Le restamos 1 unidad al stock
 
-            Gson gson = new Gson();
+                movil.setStock(movil.getStock() - 1);
 
-        //Convertimos un objeto compra en una cadena JSON
+                //Creamos un objeto GSON
 
-            String parametroJson = gson.toJson(movil);
+                Gson gson = new Gson();
 
-            String id = Integer.toString(movil.getId_movil());
+                //Convertimos un objeto compra en una cadena JSON
 
-        //Preparamos y ejecutamos la tarea
+                String parametroJson = gson.toJson(movil);
 
-            TareaRest tareaModifica = new TareaRest(this,MODIFICA_MOVIL,"PUT",URL_BASE_SERVIDOR+"/movil/"+id,parametroJson,this);
-            tareaModifica.execute();
+                String id = Integer.toString(movil.getId_movil());
+
+                //Preparamos y ejecutamos la tarea
+
+                TareaRest tareaModifica = new TareaRest(this, MODIFICA_MOVIL, "PUT", URL_BASE_SERVIDOR + "/movil/" + id, parametroJson, this);
+                tareaModifica.execute();
+
+            }
+
+        }
 
     }
 

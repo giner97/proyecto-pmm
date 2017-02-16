@@ -131,9 +131,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textViewTelefono" />
+
             </TableRow>
 
         </TableLayout>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/compras"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:id="@+id/imageButtonVerCompras" />
 
         <ImageButton
             android:layout_width="wrap_content"
