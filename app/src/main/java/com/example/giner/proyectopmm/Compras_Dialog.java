@@ -45,7 +45,7 @@ public class Compras_Dialog extends DialogFragment implements View.OnClickListen
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         builder.setTitle("MOVILINE");
-        builder.setIcon(R.drawable.user);
+        builder.setIcon(R.drawable.icon_dialog);
 
         View customDialog = getActivity().getLayoutInflater().inflate(R.layout.compras_dialog, null);
 

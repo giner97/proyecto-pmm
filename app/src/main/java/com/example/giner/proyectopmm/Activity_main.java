@@ -32,6 +32,7 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
     private final static int MODIFICA_MOVIL =1;
     private final static int ELIMINA_MOVIL =2;
     private final static int INSERTA_MOVIL =3;
+    private final static int CONSULTA_COMPRADORES =4;
     private  final static int REQUEST_CODE=0;
 
     //Creamos las variables
@@ -40,10 +41,12 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
     private Moviles movil;
     private Moviles movilCreado;
     private Movil_Dialog movil_dialog;
+    private Compradores_Dialog compradoresDialog;
     private FragmentTransaction transaction;
     private ModificaMovil_Dialog modificaDialogo;
     private FragmentTransaction transaction1;
     private InsertarMoviles_Dialog insertaMovil;
+    private FragmentTransaction transaction3;
     private FragmentTransaction transaccion2;
 
     //ArrayList Moviles
@@ -118,6 +121,19 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
 
             }
 
+            else if(codigoOperacion == 4){
+
+                ArrayList<Cliente>clientesCompradores = procesarListaClientes(respuestaJson);
+
+                //Creamos e instanciamos el dialogo
+
+                transaction3 = getFragmentManager().beginTransaction();
+                compradoresDialog=new Compradores_Dialog(clientesCompradores);
+                compradoresDialog.show(transaction3,null);
+                compradoresDialog.setCancelable(false);
+
+            }
+
         }
 
     }
@@ -141,6 +157,29 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
             Toasty.error(Activity_main.this,e.getMessage(),Toast.LENGTH_SHORT).show();
 
 
+            return null;
+
+        }
+
+    }
+
+    //Convierte un objeto JSON en un arrayList de Moviles
+    private ArrayList<Cliente> procesarListaClientes (String objetoJSON){
+
+        Gson gson = new Gson();
+
+        try {
+
+            Type tipoLista = new TypeToken<ArrayList<Cliente>>(){}.getType();
+            ArrayList<Cliente> clientesParseados = gson.fromJson(objetoJSON,tipoLista);
+            return clientesParseados;
+
+        }
+
+        catch (Exception e){
+
+            //Publico un Toast en la activity que nos llamó
+            Toasty.info(Activity_main.this,"Este móvil no ha sido comprado",Toast.LENGTH_SHORT).show();
             return null;
 
         }
@@ -210,6 +249,14 @@ public class Activity_main extends AppCompatActivity implements FragmentoActivit
         Intent intent = new Intent(this,Activity_compra.class);
         intent.putExtra(KEY_MOVIL, movil.getId_movil());
         startActivityForResult(intent,REQUEST_CODE);
+
+    }
+
+    @Override
+    public void llamaDialogoCompradores(Moviles movil) {
+
+        TareaRest tareaConsultaCompradores = new TareaRest(this,CONSULTA_COMPRADORES,"GET",URL_BASE_SERVIDOR+"/consultacliente/"+movil.getId_movil(),null,this);
+        tareaConsultaCompradores.execute();
 
     }
 

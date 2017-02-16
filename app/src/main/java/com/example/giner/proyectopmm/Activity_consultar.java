@@ -226,8 +226,8 @@ public class Activity_consultar extends AppCompatActivity implements View.OnClic
     @Override
     public void abrirDialogCompras(Cliente cliente) {
 
-        TareaRest tareaModifica = new TareaRest(this,CONSULTA_COMPRAS,"GET",URL_BASE_SERVIDOR+"/consultamovil/"+cliente.getId_cliente(),null,this);
-        tareaModifica.execute();
+        TareaRest tareaConsultaCompras = new TareaRest(this,CONSULTA_COMPRAS,"GET",URL_BASE_SERVIDOR+"/consultamovil/"+cliente.getId_cliente(),null,this);
+        tareaConsultaCompras.execute();
 
     }
 }

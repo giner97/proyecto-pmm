@@ -31,6 +31,8 @@ public class Movil_Dialog extends DialogFragment implements View.OnClickListener
     private TextView textViewPrecio;
     private ImageButton botonVolver;
     private ImageButton botonComprar;
+    private ImageButton botonVerCompradores;
+    private Moviles movil;
 
 
     private int id_movil,stock;
@@ -44,6 +46,7 @@ public class Movil_Dialog extends DialogFragment implements View.OnClickListener
 
     public Movil_Dialog(Moviles movil){
 
+        this.movil=movil;
         this.id_movil = movil.getId_movil();
         this.marca= movil.getMarca().toString();
         this.modelo= movil.getModelo().toString();
@@ -70,9 +73,11 @@ public class Movil_Dialog extends DialogFragment implements View.OnClickListener
     textViewPrecio=(TextView)customDialog.findViewById(R.id.textViewPrecio);
     textViewStock=(TextView)customDialog.findViewById(R.id.textViewStock);
 
+    botonVerCompradores = (ImageButton)customDialog.findViewById(R.id.imageButtonVerCompradores);
     botonVolver=(ImageButton)customDialog.findViewById(R.id.imageButtonVolver);
     botonComprar=(ImageButton)customDialog.findViewById(R.id.imageButtonComprar);
 
+    botonVerCompradores.setOnClickListener(this);
     botonVolver.setOnClickListener(this);
     botonComprar.setOnClickListener(this);
 
@@ -100,7 +105,6 @@ public class Movil_Dialog extends DialogFragment implements View.OnClickListener
     @Override
     public void onClick(View view) {
 
-
         if (view.getId()==R.id.imageButtonComprar){
 
             if(stock<1){
@@ -118,10 +122,16 @@ public class Movil_Dialog extends DialogFragment implements View.OnClickListener
 
         }
 
-        else {
+        else if(view.getId()==R.id.imageButtonVolver) {
 
             //Si se pulsa cancelar el dialogo se cerrará sí o sí sin realizar ninguna acción
             dialogo.dismiss();
+
+        }
+
+        else if(view.getId()==R.id.imageButtonVerCompradores){
+
+            escuchador.llamaDialogoCompradores(movil);
 
         }
 
@@ -138,6 +148,7 @@ public class Movil_Dialog extends DialogFragment implements View.OnClickListener
     public interface OnListener{
 
         void onIniciasActividad ();
+        void llamaDialogoCompradores(Moviles movil);
 
     }
 

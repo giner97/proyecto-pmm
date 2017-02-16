@@ -44,7 +44,6 @@ public class Cliente {
             this.id_cliente = id_cliente;
         }
 
-
         public String getDni() {
             return dni;
         }

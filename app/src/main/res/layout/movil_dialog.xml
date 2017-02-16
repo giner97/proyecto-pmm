@@ -156,6 +156,15 @@
             </TableRow>
 
         </TableLayout>
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/compradores"
+            android:background="@android:color/transparent"
+            android:layout_marginTop="20dp"
+            android:id="@+id/imageButtonVerCompradores" />
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -165,7 +174,6 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_margin="20dp"
                 app:srcCompat="@drawable/return_button"
                 android:id="@+id/imageButtonVolver"
@@ -175,7 +183,6 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_margin="20dp"
                 android:layout_gravity="center"
                 app:srcCompat="@drawable/buy_phone"

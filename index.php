@@ -467,6 +467,104 @@ $app->get('/',function()use ($app){
             }
             
            });
+		   
+	//Consulta moviles comprados por un usuario
+	
+	$app->get('/consultamovil/:id', function ($id) use ($app,$db){
+        
+        try{
+            
+            //Preparamos la consulta
+            
+                $consulta = $db->prepare("select mo.id_movil, mo.marca, mo.modelo, mo.procesador, mo.ram, mo.precio, mo.stock from Movil mo inner join Compra co on mo.id_movil=co.id_movil where id_cliente=$id;");
+                
+            //Ejecutamos la consulta
+                
+                $consulta->execute();
+                
+            //Almacenamos los resultados de la consulta en un array
+                
+                $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+                
+            //Comprobamos si los resultados tienen un valor diferente a false
+                
+                if($resultados){
+                    
+                    //Establecemos el tipo de datos a enviar
+                    
+                        $app->response()->header('Content-Type', 'application/json');
+                        
+                    //Devolvemos el array como Json
+                        
+                        echo json_encode($resultados);
+                    
+                }
+                
+                else{
+                    
+                    throw new PDOException($consulta->errorInfo()[2]);
+                
+                }
+        }
+        
+        catch (Exception $ex) {
+
+            $app->response()->setStatus(404);
+            echo $e->getMessage();
+            
+        }
+        
+    });
+	
+	//Consulta clientes que han comprados un movil
+	
+	$app->get('/consultacliente/:id', function ($id) use ($app,$db){
+        
+        try{
+            
+            //Preparamos la consulta
+            
+                $consulta = $db->prepare("select cl.id_cliente,cl.nombre,cl.apellidos,cl.dni,cl.provincia, cl.telefono from Cliente cl inner join Compra co on cl.id_cliente=co.id_cliente where id_movil=$id;");
+                
+            //Ejecutamos la consulta
+                
+                $consulta->execute();
+                
+            //Almacenamos los resultados de la consulta en un array
+                
+                $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+                
+            //Comprobamos si los resultados tienen un valor diferente a false
+                
+                if($resultados){
+                    
+                    //Establecemos el tipo de datos a enviar
+                    
+                        $app->response()->header('Content-Type', 'application/json');
+                        
+                    //Devolvemos el array como Json
+                        
+                        echo json_encode($resultados);
+                    
+                }
+                
+                else{
+                    
+                    throw new PDOException($consulta->errorInfo()[2]);
+                
+                }
+        }
+        
+        catch (Exception $ex) {
+
+            $app->response()->setStatus(404);
+            echo $e->getMessage();
+            
+        }
+        
+    });
+		   
+	
 	
     $app->run();
     

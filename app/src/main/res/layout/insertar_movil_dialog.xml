@@ -193,9 +193,10 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/add_user"
+                app:srcCompat="@drawable/addmovil"
                 android:id="@+id/imageButtonAnyadirMovil"
                 android:layout_weight="1"
+                android:layout_marginBottom="20dp"
                 android:background="@android:color/transparent" />
 
         </LinearLayout>
