@@ -140,7 +140,7 @@
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="phone"
+                    android:inputType="number"
                     android:hint="Introduce Telefono"
                     android:maxLength="9"
                     android:ems="10"

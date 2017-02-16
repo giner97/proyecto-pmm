@@ -1,4 +1,4 @@
-package com.example.giner.proyectopmm;
+package com.example.giner.proyectopmm.Dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -9,7 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
-import java.lang.reflect.Array;
+import com.example.giner.proyectopmm.Objetos.Cliente;
+import com.example.giner.proyectopmm.R;
+
 import java.util.ArrayList;
 
 public class Compradores_Dialog extends DialogFragment implements View.OnClickListener{

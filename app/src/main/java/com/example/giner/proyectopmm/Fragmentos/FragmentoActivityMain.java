@@ -1,4 +1,4 @@
-package com.example.giner.proyectopmm;
+package com.example.giner.proyectopmm.Fragmentos;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -11,6 +11,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+
+import com.example.giner.proyectopmm.ArrayAdapter.ArrayAdapterMoviles;
+import com.example.giner.proyectopmm.Objetos.Moviles;
+import com.example.giner.proyectopmm.R;
 
 import java.util.ArrayList;
 

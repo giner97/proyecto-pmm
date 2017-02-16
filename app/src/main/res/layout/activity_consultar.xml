@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="15dp"
-    tools:context="com.example.giner.proyectopmm.Activity_consultar">
+    tools:context="com.example.giner.proyectopmm.Activities.Activity_consultar">
 
     <fragment
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:name="com.example.giner.proyectopmm.Fragmento_consultar"
+        android:name="com.example.giner.proyectopmm.Fragmentos.Fragmento_consultar"
         android:id="@+id/fragment2"
         tools:layout="@layout/fragmento_consultar"
         android:layout_alignParentTop="true"

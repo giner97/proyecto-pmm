@@ -1,16 +1,15 @@
-package com.example.giner.proyectopmm;
+package com.example.giner.proyectopmm.Dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import es.dmoral.toasty.Toasty;
+import com.example.giner.proyectopmm.Objetos.Cliente;
+import com.example.giner.proyectopmm.R;
 
 
 public class Cliente_Dialog extends DialogFragment implements View.OnClickListener {

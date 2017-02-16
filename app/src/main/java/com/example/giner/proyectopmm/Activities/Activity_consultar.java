@@ -1,4 +1,4 @@
-package com.example.giner.proyectopmm;
+package com.example.giner.proyectopmm.Activities;
 
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -7,9 +7,16 @@ import android.os.Bundle;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.giner.proyectopmm.Objetos.Cliente;
+import com.example.giner.proyectopmm.Dialogs.Cliente_Dialog;
+import com.example.giner.proyectopmm.Dialogs.Compras_Dialog;
+import com.example.giner.proyectopmm.Fragmentos.Fragmento_consultar;
+import com.example.giner.proyectopmm.Dialogs.ModificaCliente_Dialog;
+import com.example.giner.proyectopmm.Objetos.Moviles;
+import com.example.giner.proyectopmm.R;
+import com.example.giner.proyectopmm.TareaRest.TareaRest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -18,7 +25,7 @@ import java.util.ArrayList;
 
 import es.dmoral.toasty.Toasty;
 
-public class Activity_consultar extends AppCompatActivity implements View.OnClickListener, Cliente_Dialog.OnClienteDialogListener,Fragmento_consultar.FragmentoConsultarListener,TareaRest.TareaRestListener, ModificaCliente_Dialog.OnModificaListener{
+public class Activity_consultar extends AppCompatActivity implements View.OnClickListener, Cliente_Dialog.OnClienteDialogListener,Fragmento_consultar.FragmentoConsultarListener,TareaRest.TareaRestListener, ModificaCliente_Dialog.OnModificaListener {
 
     private Cliente_Dialog clienteDialogo;
     private ModificaCliente_Dialog modificaDialogo;

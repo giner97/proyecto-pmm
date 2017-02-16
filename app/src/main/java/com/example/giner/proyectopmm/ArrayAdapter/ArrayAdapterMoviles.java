@@ -1,4 +1,4 @@
-package com.example.giner.proyectopmm;
+package com.example.giner.proyectopmm.ArrayAdapter;
 
 
 import android.content.Context;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.example.giner.proyectopmm.Objetos.Moviles;
+import com.example.giner.proyectopmm.R;
 
 import java.util.ArrayList;
 

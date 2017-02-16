@@ -1,4 +1,4 @@
-package com.example.giner.proyectopmm;
+package com.example.giner.proyectopmm.Dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -8,11 +8,11 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import com.example.giner.proyectopmm.Objetos.Moviles;
+import com.example.giner.proyectopmm.R;
 
 import java.util.ArrayList;
-
-import es.dmoral.toasty.Toasty;
 
 
 public class Compras_Dialog extends DialogFragment implements View.OnClickListener{

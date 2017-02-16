@@ -5,7 +5,7 @@
     android:id="@+id/activity_consultar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.giner.proyectopmm.Activity_compra">
+    tools:context="com.example.giner.proyectopmm.Activities.Activity_compra">
 
     <LinearLayout
         android:orientation="vertical"

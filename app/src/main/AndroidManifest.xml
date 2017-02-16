@@ -12,8 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activity_main"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".Activities.Activity_main"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,11 +22,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activity_compra"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".Activities.Activity_compra"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
-            android:name=".Activity_consultar"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".Activities.Activity_consultar"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

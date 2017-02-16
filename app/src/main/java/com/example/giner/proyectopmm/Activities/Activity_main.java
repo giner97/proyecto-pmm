@@ -1,4 +1,4 @@
-package com.example.giner.proyectopmm;
+package com.example.giner.proyectopmm.Activities;
 
 import android.app.Activity;
 import android.app.FragmentTransaction;
@@ -7,11 +7,18 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import com.example.giner.proyectopmm.Objetos.Cliente;
+import com.example.giner.proyectopmm.Dialogs.Compradores_Dialog;
+import com.example.giner.proyectopmm.Fragmentos.FragmentoActivityMain;
+import com.example.giner.proyectopmm.Dialogs.InsertarMoviles_Dialog;
+import com.example.giner.proyectopmm.Dialogs.ModificaMovil_Dialog;
+import com.example.giner.proyectopmm.Dialogs.Movil_Dialog;
+import com.example.giner.proyectopmm.Objetos.Moviles;
+import com.example.giner.proyectopmm.R;
+import com.example.giner.proyectopmm.TareaRest.TareaRest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -20,7 +27,7 @@ import java.util.ArrayList;
 
 import es.dmoral.toasty.Toasty;
 
-public class Activity_main extends AppCompatActivity implements FragmentoActivityMain.FragmentoMainListener, TareaRest.TareaRestListener, Movil_Dialog.OnListener,ModificaMovil_Dialog.OnModificaMovilListener, InsertarMoviles_Dialog.OnInsertaMovil{
+public class Activity_main extends AppCompatActivity implements FragmentoActivityMain.FragmentoMainListener, TareaRest.TareaRestListener, Movil_Dialog.OnListener,ModificaMovil_Dialog.OnModificaMovilListener, InsertarMoviles_Dialog.OnInsertaMovil {
 
     //URL servidor
 

@@ -1,4 +1,4 @@
-package com.example.giner.proyectopmm;
+package com.example.giner.proyectopmm.Activities;
 
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -17,6 +17,13 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.giner.proyectopmm.Objetos.Cliente;
+import com.example.giner.proyectopmm.Objetos.Compra;
+import com.example.giner.proyectopmm.Dialogs.IMEI_Dialog;
+import com.example.giner.proyectopmm.Objetos.Moviles;
+import com.example.giner.proyectopmm.R;
+import com.example.giner.proyectopmm.Dialogs.Registro_Dialog;
+import com.example.giner.proyectopmm.TareaRest.TareaRest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -25,7 +32,7 @@ import java.util.ArrayList;
 
 import es.dmoral.toasty.Toasty;
 
-public class Activity_compra extends AppCompatActivity implements Registro_Dialog.OnInsertarCliente, AdapterView.OnItemClickListener, View.OnClickListener,TareaRest.TareaRestListener,TextWatcher,IMEI_Dialog.OnImeiDialog{
+public class Activity_compra extends AppCompatActivity implements Registro_Dialog.OnInsertarCliente, AdapterView.OnItemClickListener, View.OnClickListener,TareaRest.TareaRestListener,TextWatcher,IMEI_Dialog.OnImeiDialog {
 
     //URL servidor
     private final static String URL_BASE_SERVIDOR = "http://alvaro-ricardo-pmm.hol.es/";

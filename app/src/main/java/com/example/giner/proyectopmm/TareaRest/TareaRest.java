@@ -1,4 +1,4 @@
-package com.example.giner.proyectopmm;
+package com.example.giner.proyectopmm.TareaRest;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -10,6 +10,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import es.dmoral.toasty.Toasty;
 
 //Tarea asíncrona que nos permite realizar la conexión de red en segundo plano para operaciones con alumnos
 public class TareaRest extends AsyncTask <Void, String, String>{
@@ -136,6 +138,7 @@ public class TareaRest extends AsyncTask <Void, String, String>{
     @Override
     protected void onProgressUpdate(String... error) {
         //Mostramos las incidencias de conexión con un Toast en la pantalla de la actividad que nos llamó
-        Toast.makeText(contexto, error[0], Toast.LENGTH_LONG).show();
+
+        Toasty.error(contexto,"Ha ocurrido un error",Toast.LENGTH_SHORT).show();
     }
 }

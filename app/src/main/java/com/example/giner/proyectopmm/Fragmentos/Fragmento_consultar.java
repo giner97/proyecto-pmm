@@ -1,4 +1,4 @@
-package com.example.giner.proyectopmm;
+package com.example.giner.proyectopmm.Fragmentos;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -17,8 +17,10 @@ import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import com.example.giner.proyectopmm.Objetos.Cliente;
+import com.example.giner.proyectopmm.R;
+
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 import es.dmoral.toasty.Toasty;
 

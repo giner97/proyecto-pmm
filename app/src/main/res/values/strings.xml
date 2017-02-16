@@ -11,8 +11,8 @@
     <string name="apellidosClienteDialog">Apellidos:</string>
     <string name="dniClienteDialog">DNI:</string>
     <string name="provinciaClienteDialog">Provincia:</string>
-    <string name="telefonoClienteDialog">Telefono:</string>
-    <string name="caracteristicasMovilDialog">Caracteristicas del movil</string>
+    <string name="telefonoClienteDialog">Teléfono:</string>
+    <string name="caracteristicasMovilDialog">Características del movil</string>
     <string name="marcaMovilDialog">Marca:</string>
     <string name="modeloMovilDialog">Modelo:</string>
     <string name="procesadorMovilDialog">Procesador:</string>
@@ -23,10 +23,10 @@
     <string name="modificaClienteApellidos">Apellidos:</string>
     <string name="modificaClienteDni">DNI:</string>
     <string name="modificaClienteProvincia">Provincia:</string>
-    <string name="modificaClienteTelefono">Telefono:</string>
+    <string name="modificaClienteTelefono">Teléfono:</string>
     <string name="buscarCliente">Buscar cliente</string>
     <string name="stockMovilDialog">Stock:</string>
-    <string name="modificar_moviles_dialog">Modificar Moviles</string>
+    <string name="modificar_moviles_dialog">Modificar Móviles</string>
     <string name="marcaDialog">Marca:</string>
     <string name="modeloDialog">Modelo:</string>
     <string name="procesadorDialog">Procesador:</string>
